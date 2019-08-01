@@ -44,12 +44,12 @@ const MainTabs = createBottomTabNavigator({
 },{
   tabBarOptions: {
     initialRouteName: 'Movies',
-    activeTintColor: '#000',
+    activeTintColor: '#fff',
     labelStyle: {
       fontSize: 14,
     },
     style: {
-      backgroundColor: '#ccc',
+      backgroundColor: '#000',
     },
   }
 });

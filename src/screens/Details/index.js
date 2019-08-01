@@ -6,13 +6,13 @@ import {
     StatusBar,
     Button,
   } from 'react-native';
-  import { StackActions, NavigationActions } from 'react-navigation';
   
 class DetailsScreen extends Component {
   static navigationOptions = {
     title: 'Details - Marcos',
   };
     render() {
+      const { navigation } = this.props;
       return (
         <Fragment>
           <StatusBar barStyle="dark-content" />
@@ -22,7 +22,7 @@ class DetailsScreen extends Component {
               <Text>Details Screen</Text>
               <Button
                 title="Go to Home"
-                onPress={() => this.props.navigation.navigate('MainTabs')}
+                onPress={() => navigation.navigate('MainTabs')}
               />
             </View>
           </SafeAreaView>
