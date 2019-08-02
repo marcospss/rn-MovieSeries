@@ -8,24 +8,28 @@ export const Container = styled.View`
   flex-direction: column;
 `;
 
-export const Title = styled.Text`
+export const Section = styled.Text`
   color: ${theme.colors.primary};
   font-size: 20;
   margin: 10px;
 `;
 
 export const Items = styled.View`
-  align-items: flex-start;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-  width: 100%;
-  height: 100%;
+  
+  
 `;
 
 export const Poster = styled.Image`
-  width: 92;
-  height: 138;
+  width: 110;
+  height: 150;
   border-radius: 5;
-  margin: 6px;
+  margin: 8px;
+`;
+
+export const Title = styled.Text`
+  width: 110;
+  color: ${theme.colors.primary};
+  font-size: 14;
+  margin: 10px;
+  overflow: hidden;
 `;

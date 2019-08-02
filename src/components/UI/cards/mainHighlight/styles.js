@@ -8,22 +8,22 @@ export const Container = styled.View`
   height: 100%;
 `;
 
+export const Backdrop = styled.ImageBackground`
+  flex: 1;
+  align-items: flex-end;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+`;
+
 export const Header = styled.View`
   flex: 1;
   align-items: baseline;
   flex-direction: column;
   align-content: flex-end;
-  height: 80px;
+  height: 80;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-`;
-
-export const Category = styled.Text`
-  flex: 1;
-  align-items: flex-end;
-  flex-direction: row;
-  color: ${theme.colors.primary};
-  font-weight: bold;
 `;
 
 export const Title = styled.Text`
@@ -34,10 +34,10 @@ export const Title = styled.Text`
   font-size: 20;
 `;
 
-export const Backdrop = styled.ImageBackground`
+export const Category = styled.Text`
   flex: 1;
   align-items: flex-end;
   flex-direction: row;
-  width: 100%;
-  height: 100%;
+  color: ${theme.colors.primary};
+  font-weight: bold;
 `;
