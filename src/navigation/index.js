@@ -24,7 +24,7 @@ const AppNavigation = createStackNavigator({
 
 const MainTabs = createBottomTabNavigator({
   Movies: {
-    screen: Details,
+    screen: Movies,
     navigationOptions: {
       tabBarLabel: "Movies"
     }
@@ -43,7 +43,7 @@ const MainTabs = createBottomTabNavigator({
   }
 },{
   tabBarOptions: {
-    initialRouteName: 'Movies',
+    initialRouteName: 'Favorites',
     activeTintColor: '#fff',
     labelStyle: {
       fontSize: 14,
