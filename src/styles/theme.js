@@ -16,8 +16,9 @@ export default {
         xl: 40,
     },
     fontSize: {
-        sm: 12,
-        md: 18,
+        xs: 12,
+        sm: 14,
+        md: 20,
         lg: 28,
     },
     fontFamily: {

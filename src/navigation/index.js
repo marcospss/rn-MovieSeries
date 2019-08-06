@@ -13,9 +13,9 @@ const AppNavigation = createStackNavigator({
 {
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: '#000',
     },
-    headerTintColor: '#fff',
+    headerTintColor: '#efefef',
     headerTitleStyle: {
       fontWeight: 'bold',
     },
@@ -24,7 +24,7 @@ const AppNavigation = createStackNavigator({
 
 const MainTabs = createBottomTabNavigator({
   Movies: {
-    screen: Movies,
+    screen: Details,
     navigationOptions: {
       tabBarLabel: "Movies"
     }
