@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ScrollView, TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity, Button } from 'react-native';
 
 import { 
   Container, 
@@ -18,9 +18,9 @@ import {
 import ListMedia  from '~/components/UI/listMedia';
 
 class DetailsScreen extends Component {
-  static navigationOptions = {
-    title: 'Toy Story 4',
-  };
+    static navigationOptions = {
+      title: 'Toy Story 4'
+    };
     render() {
       return (
       <Container>

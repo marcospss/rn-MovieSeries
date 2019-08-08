@@ -1,49 +1,39 @@
-import { createAppContainer, createStackNavigator, createSwitchNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
+import { 
+  createAppContainer, 
+  createStackNavigator,
+  createSwitchNavigator, 
+  createDrawerNavigator, 
+  createBottomTabNavigator 
+} from 'react-navigation';
 
 import Movies from '~/screens/Movies';
 import Series from '~/screens/Series';
 import Favorites from '~/screens/Favorites';
 import Details from '~/screens/Details';
 
-const AppNavigation = createStackNavigator({
-  Details: {
-    screen: Details,
-  }
-},
-{
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: '#000',
-    },
-    headerTintColor: '#efefef',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  },
-});
-
 const MainTabs = createBottomTabNavigator({
   Movies: {
     screen: Movies,
     navigationOptions: {
-      tabBarLabel: "Movies"
+      tabBarLabel: 'Movies',
     }
   },
   Series: {
     screen: Series,
     navigationOptions: {
-      tabBarLabel: "Series"
+      tabBarLabel: 'Series',
     }
   },
   Favorites: {
     screen: Favorites,
     navigationOptions: {
-      tabBarLabel: "Favorites"
+      tabBarLabel: 'Favorites',
     }
   }
-},{
+},
+{
   tabBarOptions: {
-    initialRouteName: 'Favorites',
+    initialRouteName: 'Movies',
     activeTintColor: '#fff',
     labelStyle: {
       fontSize: 14,
@@ -54,13 +44,35 @@ const MainTabs = createBottomTabNavigator({
   }
 });
 
-const App = createSwitchNavigator({
-  MainTabs: {
-    screen: MainTabs
+const AppNavigation = createStackNavigator({
+  Details: {
+    screen: Details,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+      headerTintColor: '#efefef',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
   },
-  AppNavigation: {
-    screen: AppNavigation
+  MainTabs: {
+    screen: MainTabs,
+    navigationOptions: {
+      header: null,
+    }
   }
+},
+{  
+  initialRouteName: 'MainTabs'
 });
 
-export default createAppContainer(App);
+const Navigation = createSwitchNavigator({
+  MainTabs: MainTabs,
+  AppNavigation: AppNavigation,
+},{
+  initialRouteName: 'MainTabs'
+});
+
+export default createAppContainer(Navigation);

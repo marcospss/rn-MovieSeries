@@ -11,7 +11,8 @@ import {
   Title,
   Category,
   VoteAverage,
-  Overview
+  Actions,
+  Button
 } from './styles';
 
 class FavoritesScreen extends Component {
@@ -21,49 +22,61 @@ class FavoritesScreen extends Component {
     render() {
       return (
       <Container>
-        <ScrollView style={{flex: 1}}>
+        <ScrollView>
           <Content>
           <TouchableOpacity onPress={() => NavigationHelper.navigate('Details')}>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w300/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}} />
+            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
           </TouchableOpacity>
             <Details>
               <Title>Toy Story 4</Title>
               <Category>Adventure | Animation | Comedy | Family</Category>
+              <Category>August 6th 2019, 2h 30m</Category>
               <VoteAverage>Rating: 7.2 </VoteAverage>
-              <Overview>Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.</Overview>
+              <Actions>
+              <Button
+                  onPress={()=>{}}
+                  title="Learn More"
+                  accessibilityLabel="Learn more about this purple button"
+                />
+                <Button
+                onPress={()=>{}}
+                title="Learn More"
+                accessibilityLabel="Learn more about this purple button"
+              />
+              </Actions>
             </Details>
           </Content>
           <Content>
           <TouchableOpacity onPress={() => NavigationHelper.navigate('Details')}>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w300/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}} />
+            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
           </TouchableOpacity>
             <Details>
               <Title>Toy Story 4</Title>
               <Category>Adventure | Animation | Comedy | Family</Category>
+              <Category>August 6th 2019, 2h 30m</Category>
               <VoteAverage>Rating: 7.2 </VoteAverage>
-              <Overview>Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.</Overview>
             </Details>
           </Content>
           <Content>
           <TouchableOpacity onPress={() => NavigationHelper.navigate('Details')}>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w300/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}} />
+            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
           </TouchableOpacity>
             <Details>
               <Title>Toy Story 4</Title>
               <Category>Adventure | Animation | Comedy | Family</Category>
+              <Category>August 6th 2019, 2h 30m</Category>
               <VoteAverage>Rating: 7.2 </VoteAverage>
-              <Overview>Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.</Overview>
             </Details>
           </Content>
           <Content>
           <TouchableOpacity onPress={() => NavigationHelper.navigate('Details')}>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w300/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}} />
+            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
           </TouchableOpacity>
             <Details>
               <Title>Toy Story 4</Title>
               <Category>Adventure | Animation | Comedy | Family</Category>
+              <Category>August 6th 2019, 2h 30m</Category>
               <VoteAverage>Rating: 7.2 </VoteAverage>
-              <Overview>Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.</Overview>
             </Details>
           </Content>
         </ScrollView>
