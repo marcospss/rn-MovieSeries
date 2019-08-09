@@ -1,9 +1,9 @@
-import { 
-  createAppContainer, 
-  createStackNavigator,
-  createSwitchNavigator, 
-  createDrawerNavigator, 
-  createBottomTabNavigator 
+import {
+  createSwitchNavigator,
+  createAppContainer,
+  createDrawerNavigator,
+  createBottomTabNavigator,
+  createStackNavigator
 } from 'react-navigation';
 
 import Movies from '~/screens/Movies';
@@ -11,68 +11,101 @@ import Series from '~/screens/Series';
 import Favorites from '~/screens/Favorites';
 import Details from '~/screens/Details';
 
-const MainTabs = createBottomTabNavigator({
-  Movies: {
-    screen: Movies,
-    navigationOptions: {
-      tabBarLabel: 'Movies',
+const DetailsStack = createStackNavigator(
+  {
+    Details: {
+      screen: Details,
+      navigationOptions: {
+        headerStyle: {
+          backgroundColor: '#000',
+        },
+        headerTintColor: '#efefef',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }
     }
-  },
+  }
+);
+
+const MoviesStack = createStackNavigator(
+  {
+    Movies: {
+      screen: Movies,
+      navigationOptions: {
+        header: null,
+      }
+    }
+  }
+);
+
+const SeriesStack = createStackNavigator({
   Series: {
     screen: Series,
-    navigationOptions: {
-      tabBarLabel: 'Series',
-    }
-  },
-  Favorites: {
-    screen: Favorites,
-    navigationOptions: {
-      tabBarLabel: 'Favorites',
-    }
-  }
-},
-{
-  tabBarOptions: {
-    initialRouteName: 'Movies',
-    activeTintColor: '#fff',
-    labelStyle: {
-      fontSize: 14,
-    },
-    style: {
-      backgroundColor: '#000',
-    },
-  }
-});
-
-const AppNavigation = createStackNavigator({
-  Details: {
-    screen: Details,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#000',
-      },
-      headerTintColor: '#efefef',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }
-  },
-  MainTabs: {
-    screen: MainTabs,
     navigationOptions: {
       header: null,
     }
   }
-},
-{  
-  initialRouteName: 'MainTabs'
 });
 
-const Navigation = createSwitchNavigator({
-  MainTabs: MainTabs,
-  AppNavigation: AppNavigation,
-},{
-  initialRouteName: 'MainTabs'
+const FavoritesStack = createStackNavigator({
+  Favorites: {
+    screen: Favorites,
+    navigationOptions: {
+      header: null,
+    }
+  }
 });
 
-export default createAppContainer(Navigation);
+const TabNavigator = createBottomTabNavigator(
+  {
+    Movies: {
+      screen: MoviesStack,
+      navigationOptions: {
+        tabBarLabel: 'Movies',
+        borderTopColor: '#605F60'
+      }
+    },
+    Series: {
+      screen: SeriesStack,
+      navigationOptions: {
+        tabBarLabel: 'Series',
+      }
+    },
+    Favorites: {
+      screen: FavoritesStack,
+      navigationOptions: {
+        tabBarLabel: 'Favorites',
+      }
+    }
+  },
+  {
+    navigationOptions: {
+      header: null,
+    },
+    tabBarOptions: {
+      activeTintColor: '#fff',
+      labelStyle: {
+        fontSize: 14,
+      },
+      style: {
+        backgroundColor: '#000',
+      },
+    }
+  }
+);
+
+const TabsStackNavigator = createStackNavigator({
+  TabNavigator: TabNavigator
+});
+
+const DrawerNavigator = createDrawerNavigator({
+  Home: {
+    screen: TabsStackNavigator
+  }
+});
+
+export default createAppContainer(createSwitchNavigator({
+  Home: { screen: DrawerNavigator },
+  Details: { screen: DetailsStack }
+}));
