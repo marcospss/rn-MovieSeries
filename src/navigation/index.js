@@ -1,111 +1,79 @@
-import {
-  createSwitchNavigator,
-  createAppContainer,
-  createDrawerNavigator,
-  createBottomTabNavigator,
-  createStackNavigator
+import { 
+  createAppContainer, 
+  createStackNavigator,
+  createSwitchNavigator, 
+  createDrawerNavigator, 
+  createBottomTabNavigator 
 } from 'react-navigation';
 
 import Movies from '~/screens/Movies';
 import Series from '~/screens/Series';
+import Search from '~/screens/Search';
 import Favorites from '~/screens/Favorites';
 import Details from '~/screens/Details';
 
-const DetailsStack = createStackNavigator(
-  {
-    Details: {
-      screen: Details,
-      navigationOptions: {
-        headerStyle: {
-          backgroundColor: '#000',
-        },
-        headerTintColor: '#efefef',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }
+const StackHomeTabs = createBottomTabNavigator({
+  Movies: {
+    screen: Movies,
+    navigationOptions: {
+      tabBarLabel: 'Movies',
     }
-  }
-);
-
-const MoviesStack = createStackNavigator(
-  {
-    Movies: {
-      screen: Movies,
-      navigationOptions: {
-        header: null,
-      }
-    }
-  }
-);
-
-const SeriesStack = createStackNavigator({
+  },
   Series: {
     screen: Series,
     navigationOptions: {
-      header: null,
-    }
-  }
-});
-
-const FavoritesStack = createStackNavigator({
-  Favorites: {
-    screen: Favorites,
-    navigationOptions: {
-      header: null,
-    }
-  }
-});
-
-const TabNavigator = createBottomTabNavigator(
-  {
-    Movies: {
-      screen: MoviesStack,
-      navigationOptions: {
-        tabBarLabel: 'Movies',
-        borderTopColor: '#605F60'
-      }
-    },
-    Series: {
-      screen: SeriesStack,
-      navigationOptions: {
-        tabBarLabel: 'Series',
-      }
-    },
-    Favorites: {
-      screen: FavoritesStack,
-      navigationOptions: {
-        tabBarLabel: 'Favorites',
-      }
+      tabBarLabel: 'Series',
     }
   },
-  {
+  Search: {
+    screen: Search,
     navigationOptions: {
-      header: null,
-    },
-    tabBarOptions: {
-      activeTintColor: '#fff',
-      labelStyle: {
-        fontSize: 14,
-      },
-      style: {
-        backgroundColor: '#000',
-      },
+      tabBarLabel: 'Search',
     }
   }
-);
-
-const TabsStackNavigator = createStackNavigator({
-  TabNavigator: TabNavigator
-});
-
-const DrawerNavigator = createDrawerNavigator({
-  Home: {
-    screen: TabsStackNavigator
+},
+{
+  tabBarOptions: {
+    initialRouteName: 'Movies',
+    activeTintColor: '#fff',
+    labelStyle: {
+      fontSize: 14,
+    },
+    style: {
+      backgroundColor: '#000',
+    },
   }
 });
 
-export default createAppContainer(createSwitchNavigator({
-  Home: { screen: DrawerNavigator },
-  Details: { screen: DetailsStack }
-}));
+const StackAppNavigation = createStackNavigator({
+  Details: {
+    screen: Details,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+      headerTintColor: '#efefef',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
+  },
+  Home: {
+    screen: StackHomeTabs,
+    navigationOptions: {
+      header: null,
+    }
+  }
+},
+{  
+  initialRouteName: 'Home'
+});
+
+const Navigation = createSwitchNavigator({
+  Home: StackHomeTabs,
+  AppNavigation: StackAppNavigation,
+},{
+  initialRouteName: 'Home'
+});
+
+export default createAppContainer(Navigation);

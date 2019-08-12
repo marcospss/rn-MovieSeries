@@ -19,7 +19,14 @@ import ListMedia  from '~/components/UI/listMedia';
 
 class DetailsScreen extends Component {
     static navigationOptions = {
-      title: 'Toy Story 4'
+      title: 'Toy Story 4',
+      headerStyle: {
+        backgroundColor: '#000',
+      },
+      headerTintColor: '#efefef',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
     };
     render() {
       return (
