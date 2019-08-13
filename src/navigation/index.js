@@ -10,23 +10,59 @@ import Movies from '~/screens/Movies';
 import Series from '~/screens/Series';
 import Search from '~/screens/Search';
 import Favorites from '~/screens/Favorites';
-import Details from '~/screens/Details';
+import { DetailsMovies, DetailsSeries } from '~/screens/Details';
 
-const StackHomeTabs = createBottomTabNavigator({
+const MoviesStack = createStackNavigator({
   Movies: {
     screen: Movies,
+    navigationOptions: {
+      header: null,
+    }
+  }
+});
+
+const SeriesStack = createStackNavigator({
+  Series: {
+    screen: Series,
+    navigationOptions: {
+      header: null,
+    }
+  }
+});
+
+const SearchStack = createStackNavigator({
+  Search: {
+    screen: Search,
+    navigationOptions: {
+      header: null,
+    }
+  }
+});
+
+const FavoritesStack = createStackNavigator({
+  Favorites: {
+    screen: Favorites,
+    navigationOptions: {
+      header: null,
+    }
+  }
+});
+
+const MainTabs = createBottomTabNavigator({
+  Movies: {
+    screen: MoviesStack,
     navigationOptions: {
       tabBarLabel: 'Movies',
     }
   },
   Series: {
-    screen: Series,
+    screen: SeriesStack,
     navigationOptions: {
       tabBarLabel: 'Series',
     }
   },
   Search: {
-    screen: Search,
+    screen: SearchStack,
     navigationOptions: {
       tabBarLabel: 'Search',
     }
@@ -45,35 +81,37 @@ const StackHomeTabs = createBottomTabNavigator({
   }
 });
 
-const StackAppNavigation = createStackNavigator({
-  Details: {
-    screen: Details,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#000',
-      },
-      headerTintColor: '#efefef',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+const DetailsStack = createStackNavigator({
+  DetailsMovies: {
+    screen: DetailsMovies,
+  },
+  DetailsSeries: {
+    screen: DetailsSeries,
+  }
+});
+
+const MainDrawer = createDrawerNavigator({
+  MainTabs: MainTabs,
+  Favorites: FavoritesStack
+});
+
+const AppModalStack = createStackNavigator(
+  {
+    App: MainDrawer,
+    DetailsMovies: {
+      screen: DetailsStack,
     }
   },
-  Home: {
-    screen: StackHomeTabs,
-    navigationOptions: {
-      header: null,
-    }
+  {
+    mode: "modal",
+    headerMode: "none"
   }
-},
-{  
-  initialRouteName: 'Home'
+);
+
+const App = createSwitchNavigator({
+  DrawerNavigator: {
+    screen: AppModalStack
+  }
 });
 
-const Navigation = createSwitchNavigator({
-  Home: StackHomeTabs,
-  AppNavigation: StackAppNavigation,
-},{
-  initialRouteName: 'Home'
-});
-
-export default createAppContainer(Navigation);
+export default createAppContainer(App);
