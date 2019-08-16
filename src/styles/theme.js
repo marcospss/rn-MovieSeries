@@ -1,9 +1,10 @@
-import { Dimensions } from 'react-native'
+import { Dimensions, Platform } from 'react-native'
 
 export default {
     colors: {
         primary: '#fff',
         secondary: '#000',
+        marcos: '#ccc',
     },
     dimensions: {
         fullHeight: Dimensions.get('window').height,

@@ -16,18 +16,21 @@ import {
   Overview,
   Suggestions 
 } from './styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import ListMedia  from '~/components/UI/listMedia';
 
 class DetailsScreen extends Component {
     static navigationOptions = {
       headerLeft: (
-        <Button
-        onPress={() => NavigationHelper.navigate('MainTabs')}
-            title="Home"
-            color="#000"
+        <Icon 
+          style={{ paddingLeft: 10 }}
+          onPress={() => NavigationHelper.navigate('Home')}
+          name="md-arrow-back"
+          size={26}
+          color="#fff"
         />
-    ),
+      ),
       title: 'Series - Toy Story 4',
       headerStyle: {
         backgroundColor: '#000',

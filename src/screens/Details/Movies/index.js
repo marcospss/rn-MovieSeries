@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { ScrollView, TouchableOpacity, Button } from 'react-native';
+import { ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import NavigationHelper from '~/helpers/Navigation';
 
@@ -22,11 +23,13 @@ import ListMedia  from '~/components/UI/listMedia';
 class DetailsScreen extends Component {
     static navigationOptions = {
         headerLeft: (
-            <Button
-            onPress={() => NavigationHelper.navigate('MainTabs')}
-                title="Home"
-                color="#000"
-            />
+          <Icon 
+            style={{ paddingLeft: 10 }}
+            onPress={() => NavigationHelper.navigate('Home')}
+            name="md-arrow-back"
+            size={26}
+            color="#fff"
+          />
         ),
       title: 'Movies - Toy Story 4',
       headerStyle: {

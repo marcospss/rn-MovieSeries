@@ -32,10 +32,6 @@ class SeriesScreen extends Component {
                 <Category>August 6th 2019, 2h 30m</Category>
                 <VoteAverage>Rating: 7.2 </VoteAverage>
               </Details>
-                <Button
-                  title="Go to MainTabs"
-                  onPress={() => NavigationHelper.navigate('MainTabs')}
-                />
             </Content>
             <Content>
               <Poster>

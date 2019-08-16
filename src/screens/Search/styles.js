@@ -44,6 +44,7 @@ export const Category = styled.Text`
   font-size: ${theme.fontSize.sm};
   line-height: ${theme.fontSize.md};
   margin-bottom: 5px;
+  flex-wrap: wrap;
 `;
 
 export const VoteAverage = styled.Text`
@@ -63,9 +64,15 @@ export const Actions = styled.View`
   justify-content: space-between;
 `;
 
-export const Button = styled.Button`
-  color: ${theme.colors.primary};
-  border: none;
-  border-radius: 16px;
-  background-color: ${theme.colors.secondary};
+
+export const Item = styled.View`
+  flex: 1;
+  border: 1px solid #ccc;
+  margin: 2px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+  height: 200px;
+  background-color: ${props => (props.transparent ? "red" : "blue")};
+  width: 80%;
+  padding: 10px;
 `;

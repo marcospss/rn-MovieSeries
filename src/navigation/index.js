@@ -1,3 +1,4 @@
+import React from 'react';
 import { 
   createAppContainer, 
   createStackNavigator,
@@ -5,6 +6,7 @@ import {
   createDrawerNavigator, 
   createBottomTabNavigator 
 } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Movies from '~/screens/Movies';
 import Series from '~/screens/Series';
@@ -52,19 +54,25 @@ const MainTabs = createBottomTabNavigator({
   Movies: {
     screen: MoviesStack,
     navigationOptions: {
-      tabBarLabel: 'Movies',
+      tabBarLabel: null,
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name='film' size={24} color={tintColor} />
     }
   },
   Series: {
     screen: SeriesStack,
     navigationOptions: {
-      tabBarLabel: 'Series',
+      tabBarLabel: null,
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name='tv' size={24} color={tintColor} />
     }
   },
   Search: {
     screen: SearchStack,
     navigationOptions: {
-      tabBarLabel: 'Search',
+      tabBarLabel: null,
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name='search' size={24} color={tintColor} />
     }
   }
 },
@@ -72,9 +80,7 @@ const MainTabs = createBottomTabNavigator({
   tabBarOptions: {
     initialRouteName: 'Movies',
     activeTintColor: '#fff',
-    labelStyle: {
-      fontSize: 14,
-    },
+    showLabel: false,
     style: {
       backgroundColor: '#000',
     },
@@ -91,7 +97,7 @@ const DetailsStack = createStackNavigator({
 });
 
 const MainDrawer = createDrawerNavigator({
-  MainTabs: MainTabs,
+  Home: MainTabs,
   Favorites: FavoritesStack
 });
 
