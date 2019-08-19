@@ -17,6 +17,8 @@ import Favorites from '~/screens/Favorites';
 import { DetailsMovies, DetailsSeries } from '~/screens/Details';
 import logo from '~/assets/images/imdb-logo.png';
 
+Icon.loadFont();
+
 const defaultNavigation = {
   headerLayoutPreset: 'center',
   defaultNavigationOptions: ({ navigation }) => ({

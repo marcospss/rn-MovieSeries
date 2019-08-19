@@ -20,6 +20,8 @@ import {
 
 import ListMedia  from '~/components/UI/listMedia';
 
+Icon.loadFont();
+
 class DetailsScreen extends Component {
     static navigationOptions = {
         headerLeft: (
