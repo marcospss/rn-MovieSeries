@@ -10,11 +10,11 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import NavigationHelper from '~/helpers/Navigation';
-import Movies from '~/screens/Movies';
-import Series from '~/screens/Series';
-import Search from '~/screens/Search';
-import Favorites from '~/screens/Favorites';
-import { DetailsMovies, DetailsSeries } from '~/screens/Details';
+import Movies from '~/pages/Movies';
+import Series from '~/pages/Series';
+import Search from '~/pages/Search';
+import Favorites from '~/pages/Favorites';
+import { DetailsMovies, DetailsSeries } from '~/pages/Details';
 import logo from '~/assets/images/imdb-logo.png';
 
 const defaultNavigation = {
