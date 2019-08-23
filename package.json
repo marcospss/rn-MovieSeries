@@ -7,11 +7,13 @@
     "test": "jest",
     "lint": "eslint .",
     "android": "react-native run-android",
+    "build:android": "react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug",
     "ios": "react-native run-ios"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
     "axios": "0.19.0",
+    "moment": "^2.24.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-native": "0.60.4",
