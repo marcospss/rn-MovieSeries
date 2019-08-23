@@ -6,18 +6,13 @@ export const Container = styled.View`
   flex: 1;
   align-items: flex-start;
   flex-direction: column;
-  height: 150;
+  height: 100%;
 `;
 
 export const Section = styled.Text`
   color: ${theme.colors.primary};
   font-size: 20;
   margin: 10px;
-`;
-
-export const Items = styled.View`
-  
-  
 `;
 
 export const Poster = styled.Image`

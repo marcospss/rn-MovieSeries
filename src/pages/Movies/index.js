@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { getDiscover } from '~/services/Discover';
@@ -40,8 +41,10 @@ export default MoviesScreen = ({ filterProperties }) => {
   return (
     <Container>
       <Carousel data={movies && movies.slice(0,9)} />
+      <ScrollView>
         <ListMedia title="Last Movies" data={movies && movies.slice(10,19)} />
         <ListMedia title="Top Rated Movies" data={topRated} />
+      </ScrollView>
     </Container>
   )
 };
