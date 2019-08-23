@@ -16,8 +16,8 @@ export const Section = styled.Text`
 `;
 
 export const Poster = styled.Image`
-  width: 110;
-  height: 150;
+  width: 110px;
+  height: 150px;
   border-radius: 5;
   margin: 8px;
 `;

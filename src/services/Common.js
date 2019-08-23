@@ -41,12 +41,20 @@ export function getSimilar(properties) {
 }
 
 /**
+ * Get Popular
+ * Get a list of the current popular movies/tv shows on TMDb. This list updates daily.
+ * @param properties
+ */
+export function getPopular(mediaType) {
+  return INSTANCE.get(`/${mediaType}/popular?${paramsDefault}`);
+}
+
+/**
  * Get Top Rated
  * Get the top rated movies/tv shows on TMDb.
  * @param properties
  */
-export function getTopRated(properties) {
-  const mediaType = properties.mediaType;
+export function getTopRated(mediaType) {
   return INSTANCE.get(`/${mediaType}/top_rated?${paramsDefault}`);
 }
 

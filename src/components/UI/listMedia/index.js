@@ -17,7 +17,10 @@ export default ListMedia = ({ title, data }) => {
                         keyExtractor={item => String(item.id)}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => NavigationHelper.navigate('DetailsMovies')}>
-                                <Poster source={{uri: posterImage(item.poster_path) }} />
+                                <Poster 
+                                    source={{uri: posterImage(item.poster_path)}}
+                                    resizeMode="contain"
+                                />
                                 <Title>{ item.title }</Title>
                             </TouchableOpacity>
                         )}
