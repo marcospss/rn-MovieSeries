@@ -1,5 +1,5 @@
 import React from 'react';
-import {YellowBox} from 'react-native';
+import { StatusBar, YellowBox } from 'react-native';
 
 import Navigation from './navigation';
 import NavigationHelper from '~/helpers/Navigation';
@@ -10,10 +10,15 @@ YellowBox.ignoreWarnings([
     'Warning: componentWillReceiveProps is deprecated',
 ]);
 
-const App = () => <Navigation 
-    ref={navigatorRef => {
-        NavigationHelper.setTopLevelNavigator(navigatorRef);
-    }}
-/>;
-
-export default App;
+export default App = () => {
+    return (
+        <>
+            <StatusBar backgroundColor="#000" barStyle="light-content" />
+            <Navigation 
+                ref={navigatorRef => {
+                    NavigationHelper.setTopLevelNavigator(navigatorRef);
+                }}
+            />
+        </>
+    )
+};

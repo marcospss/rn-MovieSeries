@@ -1,13 +1,28 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 
-import { Container } from './styles';
+import { backdropImage } from '~/helpers/Image';
 
-import CardMainHighlight  from '~/components/UI/cards/mainHighlight';
+import { Container, Backdrop, Header, Category, Title } from './styles';
 
-const Carousel = () => {
+const Carousel = ({ data }) => {
     return (
         <Container>
-            <CardMainHighlight />
+            <FlatList 
+                horizontal={true}
+                data={data}
+                keyExtractor={item => String(item.id)}
+                renderItem={({ item }) => (
+                    <>
+                        <Backdrop source={{uri: backdropImage(item.backdrop_path) }}>
+                            <Header>
+                                <Title>{ item.title }</Title>
+                                <Category>Adventure | Animation | Comedy | Family</Category>
+                            </Header>
+                        </Backdrop>
+                    </>
+                )}
+            />
         </Container>
     );
 };

@@ -6,6 +6,7 @@ export const Container = styled.View`
   flex: 1;
   align-items: flex-start;
   flex-direction: column;
+  height: 150;
 `;
 
 export const Section = styled.Text`
