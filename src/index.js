@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar, YellowBox } from 'react-native';
+import { StatusBar, YellowBox, SafeAreaView } from 'react-native';
 
 import Navigation from './navigation';
 import NavigationHelper from '~/helpers/Navigation';
@@ -12,13 +12,13 @@ YellowBox.ignoreWarnings([
 
 export default App = () => {
     return (
-        <>
+        <SafeAreaView style={{flex: 1}}>
             <StatusBar backgroundColor="#000" barStyle="light-content" />
             <Navigation 
                 ref={navigatorRef => {
                     NavigationHelper.setTopLevelNavigator(navigatorRef);
                 }}
             />
-        </>
+        </SafeAreaView>
     )
 };

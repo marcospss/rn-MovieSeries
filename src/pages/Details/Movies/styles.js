@@ -28,7 +28,7 @@ export const Header = styled.View`
 export const Poster = styled.Image`
   width: 110px;
   height: 150px;
-  border-radius: 5px;
+  border-radius: 2px;
 `;
 
 export const Info = styled.View`
@@ -44,6 +44,7 @@ export const Title = styled.Text`
   font-size: ${theme.fontSize.md};
   font-weight: bold;
   margin-bottom: 5px;
+  flex-wrap: wrap;
 `;
 
 export const Category = styled.Text`
@@ -51,6 +52,7 @@ export const Category = styled.Text`
   font-size: ${theme.fontSize.sm};
   line-height: ${theme.fontSize.md};
   margin-bottom: 5px;
+  flex-wrap: wrap;
 `;
 
 export const VoteAverage = styled.Text`

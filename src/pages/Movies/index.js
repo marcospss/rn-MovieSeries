@@ -10,8 +10,8 @@ import { Container } from '~/styles';
 import Carousel  from '~/components/UI/carousel';
 import ListMedia  from '~/components/UI/listMedia';
 
-export default MoviesScreen = ({ filterProperties }) => {
-
+export default MoviesScreen = ({ filterProperties, navigation }) => {
+  const [endListCarousel, setEndListCarousel] = useState(false);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [popular, setPopular] = useState([]);
   const [topRated, setTopRated] = useState([]);
@@ -25,6 +25,8 @@ export default MoviesScreen = ({ filterProperties }) => {
       console.error(error);
     }
   };
+
+  const showIconEndList = () => setEndListCarousel(true);
 
   async function loadPopular() {
     try {
@@ -52,7 +54,7 @@ export default MoviesScreen = ({ filterProperties }) => {
       console.error(error);
     }
   };
-  
+
   useEffect(() => {
     loadNowPlaying();
     loadPopular();
@@ -62,11 +64,26 @@ export default MoviesScreen = ({ filterProperties }) => {
 
   return (
     <Container>
-      <Carousel title="Now Playing Movies" data={nowPlaying && nowPlaying.slice(0,2)} />
+      <Carousel 
+        title="Now Playing Movies" 
+        data={nowPlaying && nowPlaying.slice(0,8)}
+        endListCarousel={endListCarousel}
+        showIconEndList={showIconEndList}
+        navigation={navigation}
+      />
       <ScrollView>
-        <ListMedia title="Popular Movies" data={popular && popular.slice(0,4)} />
-        <ListMedia title="Top Rated Movies" data={topRated && topRated.slice(0,4)} />
-        <ListMedia title="Upcoming Movies" data={upcoming && upcoming.slice(0,4)} />
+        <ListMedia 
+          title="Popular Movies" 
+          data={popular}
+        />
+        <ListMedia 
+          title="Top Rated Movies"
+          data={topRated} 
+        />
+        <ListMedia 
+          title="Upcoming Movies" 
+          data={upcoming}
+        />
       </ScrollView>
     </Container>
   )

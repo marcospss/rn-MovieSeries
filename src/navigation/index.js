@@ -19,6 +19,8 @@ import logo from '~/assets/images/imdb-logo.png';
 
 Icon.loadFont();
 
+const Hidden = () => null;
+
 const defaultNavigation = {
   headerLayoutPreset: 'center',
   defaultNavigationOptions: ({ navigation }) => ({
@@ -146,7 +148,13 @@ const MainDrawer = createDrawerNavigator(
     Favorites: {
       screen: FavoritesStack,
       navigationOptions: {
-        drawerIcon: (<Icon name='heart' size={24} color="#000" />)
+        drawerLabel: <Hidden />,
+      }
+    },
+    DetailsScreens: {
+      screen: DetailsStack,
+      navigationOptions: {
+        drawerIcon: (<Icon name='home' size={24} color="#000" />)
       }
     }
   }

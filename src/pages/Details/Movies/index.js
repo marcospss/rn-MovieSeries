@@ -1,8 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { getDetails } from '~/services/Common';
 import NavigationHelper from '~/helpers/Navigation';
+import { backdropImage, posterImage } from '~/helpers/Image';
+import { Loading, Modal } from '~/styles'
 
 import { 
   Container, 
@@ -22,50 +25,92 @@ import ListMedia  from '~/components/UI/listMedia';
 
 Icon.loadFont();
 
-class DetailsScreen extends Component {
-    static navigationOptions = {
-        headerLeft: (
-          <Icon 
-            style={{ paddingLeft: 10 }}
-            onPress={() => NavigationHelper.navigate('Home')}
-            name="md-arrow-back"
-            size={26}
-            color="#fff"
-          />
-        ),
-      title: 'Movies - Toy Story 4',
-      headerStyle: {
-        backgroundColor: '#000',
-      },
-      headerTintColor: '#efefef',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    };
-    render() {
-      return (
-      <Container>
-        <ScrollView>
-        <Backdrop source={{uri: 'https://image.tmdb.org/t/p/w780/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}}>
+const DetailsScreen = ({ navigation }) => {
+
+  const mediaId = navigation.getParam('mediaId');
+  const [details, setDetails] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  async function loadDetails() {
+    try {
+      const options = {
+        mediaType: 'movie',
+        mediaId
+      }
+      setLoading(true);
+      const response = await getDetails(options);
+      setDetails(response.data);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    loadDetails();
+  }, [mediaId]);
+
+  return (
+  <Container>
+    <Modal visible={loading}>
+      <Loading />
+    </Modal>
+    {
+      !loading
+      &&
+      <ScrollView>
+        <Backdrop 
+          source={{uri: backdropImage(details.backdrop_path)}}
+          resizeMode="contain"
+        >
           <Header>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
+            <Poster 
+              source={{uri: posterImage(details.poster_path)}}
+              resizeMode="contain" 
+            />
             <Info>
-              <Title>Toy Story 4</Title>
-              <Category>Adventure | Animation | Comedy | Family</Category>
-              <VoteAverage>Ratings</VoteAverage>
+              <Title>{ details.title }</Title>
+              <Category>{ genres(details) }</Category>
+              <VoteAverage>{ voteAverage(details) }</VoteAverage>
             </Info>
           </Header>
         </Backdrop>
           <Content>
-            <Overview>Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.</Overview>
+            <Overview>{ details.overview }</Overview>
           </Content>
           <Suggestions>
             <ListMedia />
           </Suggestions>
-        </ScrollView>
-      </Container>
-      );
-    }  
+      </ScrollView> 
+    }
+  </Container>
+  );
 }
+
+const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
+
+const voteAverage = (details) => details && (details.vote_average * 10);
+
+DetailsScreen.navigationOptions = ({ navigation }) => ({
+  headerLeft: (
+    <Icon 
+      style={{ paddingLeft: 10 }}
+      onPress={() => NavigationHelper.navigate('Home')}
+      name="md-arrow-back"
+      size={26}
+      color="#fff"
+    />
+  ),
+  title: navigation.getParam('title'),
+  headerStyle: {
+    backgroundColor: '#000',
+  },
+  headerTintColor: '#efefef',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+});
 
 export default DetailsScreen;
