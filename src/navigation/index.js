@@ -148,13 +148,13 @@ const MainDrawer = createDrawerNavigator(
     Favorites: {
       screen: FavoritesStack,
       navigationOptions: {
-        drawerLabel: <Hidden />,
+        drawerIcon: (<Icon name='heart' size={24} color="#000" />)
       }
     },
     DetailsScreens: {
       screen: DetailsStack,
       navigationOptions: {
-        drawerIcon: (<Icon name='home' size={24} color="#000" />)
+        drawerLabel: <Hidden />,
       }
     }
   }
