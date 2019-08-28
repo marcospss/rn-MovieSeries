@@ -44,7 +44,7 @@ export const Title = styled.Text`
   font-size: ${theme.fontSize.md};
   font-weight: bold;
   margin-bottom: 5px;
-  flex-wrap: wrap;
+  width: 58%;
 `;
 
 export const Category = styled.Text`
@@ -52,7 +52,7 @@ export const Category = styled.Text`
   font-size: ${theme.fontSize.sm};
   line-height: ${theme.fontSize.md};
   margin-bottom: 5px;
-  flex-wrap: wrap;
+  width: 58%;
 `;
 
 export const VoteAverage = styled.Text`
@@ -72,7 +72,7 @@ export const Overview = styled.Text`
   flex-direction: row;
   color: ${theme.colors.primary};
   padding: 10px;
-  line-height: ${theme.fontSize.md};
+  line-height: ${theme.fontSize.lg};
 `;
 
 
