@@ -4,7 +4,7 @@ export default {
     colors: {
         primary: '#fff',
         secondary: '#000',
-        marcos: '#ccc',
+        gray: '#ccc',
     },
     dimensions: {
         fullHeight: Dimensions.get('window').height,

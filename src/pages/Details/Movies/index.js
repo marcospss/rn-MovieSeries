@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { getDetails } from '~/services/Common';
 import NavigationHelper from '~/helpers/Navigation';
 import { backdropImage, posterImage } from '~/helpers/Image';
-import { Loading, Modal } from '~/styles'
 
 import { 
   Container, 
@@ -22,6 +21,7 @@ import {
 } from './styles';
 
 import ListMedia  from '~/components/UI/listMedia';
+import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
 
@@ -54,9 +54,7 @@ const DetailsScreen = ({ navigation }) => {
 
   return (
   <Container>
-    <Modal visible={loading}>
-      <Loading />
-    </Modal>
+    <Loading visible={loading} />
     {
       !loading
       &&
