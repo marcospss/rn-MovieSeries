@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { getDetails } from '~/services/Common';
+import { getDetails, getRecommendations } from '~/services/Common';
 import NavigationHelper from '~/helpers/Navigation';
 import { backdropImage, posterImage } from '~/helpers/Image';
 
@@ -17,7 +17,8 @@ import {
   Info, 
   Content,
   Overview,
-  Suggestions 
+  Recommendations,
+  Label
 } from './styles';
 
 import ListMedia  from '~/components/UI/listMedia';
@@ -29,17 +30,28 @@ const DetailsScreen = ({ navigation }) => {
 
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
+  const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(false);
+  const options = {
+    mediaType: 'movie',
+    mediaId
+  };
 
   async function loadDetails() {
     try {
-      const options = {
-        mediaType: 'movie',
-        mediaId
-      }
       setLoading(true);
       const response = await getDetails(options);
       setDetails(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  async function loadRecommendations() {
+    try {
+      setLoading(true);
+      const response = await getRecommendations(options);
+      setRecommendations(response.data.results);
       setTimeout(() => {
         setLoading(false);
       }, 2000);
@@ -48,8 +60,10 @@ const DetailsScreen = ({ navigation }) => {
     }
   };
 
+
   useEffect(() => {
     loadDetails();
+    loadRecommendations();
   }, [mediaId]);
 
   return (
@@ -63,24 +77,39 @@ const DetailsScreen = ({ navigation }) => {
           source={{uri: backdropImage(details.backdrop_path)}}
           resizeMode="contain"
         >
+          <VoteAverage>
+              <Icon
+                name="md-star"
+                size={24}
+                color="#000"
+              />
+              <Label>{ details.vote_average }</Label>
+            </VoteAverage>
           <Header>
             <Poster 
               source={{uri: posterImage(details.poster_path)}}
               resizeMode="contain" 
             />
+            
             <Info>
               <Title>{ details.title }</Title>
               <Category>{ genres(details) }</Category>
-              <VoteAverage>{ voteAverage(details) }</VoteAverage>
             </Info>
           </Header>
         </Backdrop>
           <Content>
             <Overview>{ details.overview }</Overview>
           </Content>
-          <Suggestions>
-            <ListMedia />
-          </Suggestions>
+          <Recommendations>
+          {
+            (recommendations.length > 0)
+            &&
+            <ListMedia 
+              title="Recommendations Movies" 
+              data={recommendations}
+            />
+          }
+          </Recommendations>
       </ScrollView> 
     }
   </Container>

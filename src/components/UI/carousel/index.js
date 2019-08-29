@@ -28,7 +28,10 @@ const Carousel = ({ data, title, endListCarousel, showIconEndList }) => {
                     endListCarousel
                     && <Icon 
                             style={{ padding: 60, backgroundColor: '#cccccc52' }}
-                            onPress={() => NavigationHelper.navigate('DetailsMovies')}
+                            onPress={() => NavigationHelper.navigate('DetailsMovies', {
+                                mediaId: 27205,
+                                title: 'Fixo'
+                            })}
                             name="arrow-circle-right"
                             size={50}
                             color="#fff"

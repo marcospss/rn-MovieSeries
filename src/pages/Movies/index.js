@@ -92,12 +92,6 @@ export default MoviesScreen = ({ filterProperties, navigation }) => {
 MoviesScreen.defaultProps = {
   filterProperties: {
     mediaType: 'movie',
-    discover: {
-      mediaType: 'movie',
-      sortBy: 'popularity.desc',
-      year: '',
-      genre: ''
-    },
   }
 };
 
