@@ -26,7 +26,7 @@ import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
 
-const DetailsScreen = ({ navigation }) => {
+const DetailsMovie = ({ navigation }) => {
 
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
@@ -105,8 +105,10 @@ const DetailsScreen = ({ navigation }) => {
             (recommendations.length > 0)
             &&
             <ListMedia 
-              title="Recommendations Movies" 
+              title="Recommendations" 
               data={recommendations}
+              mediaType="movie"
+              routeName="DetailsMovies"
             />
           }
           </Recommendations>
@@ -118,9 +120,7 @@ const DetailsScreen = ({ navigation }) => {
 
 const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
 
-const voteAverage = (details) => details && (details.vote_average * 10);
-
-DetailsScreen.navigationOptions = ({ navigation }) => ({
+DetailsMovie.navigationOptions = ({ navigation }) => ({
   headerLeft: (
     <Icon 
       style={{ paddingLeft: 10 }}
@@ -140,4 +140,4 @@ DetailsScreen.navigationOptions = ({ navigation }) => ({
   },
 });
 
-export default DetailsScreen;
+export default DetailsMovie;

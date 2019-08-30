@@ -8,13 +8,14 @@ import NavigationHelper from '~/helpers/Navigation';
 
 import { Container, Section, Backdrop, Header, Release, Title } from './styles';
 
-const titleFormat = (title) => {
+const titleFormat = (item) => {
+    const title = (item.title) ? item.title : item.name;
     return (title.length > 28) ? `${title.substring(0,28)}...` : title;
 }
 
 Icon.loadFont();
 
-const Carousel = ({ data, title, endListCarousel, showIconEndList }) => {
+const Carousel = ({ data, title, endListCarousel, showIconEndList, mediaType, routeName }) => {
     return (
         <Container>
             <Section>{ title }</Section>
@@ -28,9 +29,8 @@ const Carousel = ({ data, title, endListCarousel, showIconEndList }) => {
                     endListCarousel
                     && <Icon 
                             style={{ padding: 60, backgroundColor: '#cccccc52' }}
-                            onPress={() => NavigationHelper.navigate('DetailsMovies', {
-                                mediaId: 27205,
-                                title: 'Fixo'
+                            onPress={() => NavigationHelper.navigate('Discover', {
+                                mediaType
                             })}
                             name="arrow-circle-right"
                             size={50}
@@ -39,9 +39,9 @@ const Carousel = ({ data, title, endListCarousel, showIconEndList }) => {
                 }
                 renderItem={({ item }) => (
                     <TouchableOpacity 
-                        onPress={() => NavigationHelper.navigate('DetailsMovies', {
+                        onPress={() => NavigationHelper.navigate(routeName, {
                             mediaId: item.id,
-                            title: item.title
+                            title: (item.title) ? item.title : item.name,
                         })}
                     >
                         <Backdrop 
@@ -49,7 +49,7 @@ const Carousel = ({ data, title, endListCarousel, showIconEndList }) => {
                             resizeMode="contain"
                         >
                             <Header>
-                                <Title>{ titleFormat(item.title) }</Title>
+                                <Title>{ titleFormat(item) }</Title>
                                 <Release>{DateHelper.longFormat(item.release_date)}</Release>
                             </Header>
                         </Backdrop>

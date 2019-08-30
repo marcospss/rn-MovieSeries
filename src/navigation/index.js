@@ -14,6 +14,7 @@ import Movies from '~/pages/Movies';
 import Series from '~/pages/Series';
 import Search from '~/pages/Search';
 import Favorites from '~/pages/Favorites';
+import Discover from '~/pages/Discover';
 import { DetailsMovies, DetailsSeries } from '~/pages/Details';
 import logo from '~/assets/images/imdb-logo.png';
 
@@ -71,6 +72,15 @@ const SearchStack = createStackNavigator(
   {
     Search: {
       screen: Search,
+    }
+  },
+  defaultNavigation
+);
+
+const DiscoverStack = createStackNavigator(
+  {
+    Discover: {
+      screen: Discover,
     }
   },
   defaultNavigation
@@ -143,6 +153,12 @@ const MainDrawer = createDrawerNavigator(
       screen: MainTabs,
       navigationOptions: {
         drawerIcon: (<Icon name='home' size={24} color="#000" />)
+      }
+    },
+    Discover: {
+      screen: DiscoverStack,
+      navigationOptions: {
+        drawerIcon: (<Icon name='search-plus' size={24} color="#000" />)
       }
     },
     Favorites: {

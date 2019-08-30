@@ -1,7 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { ScrollView, TouchableOpacity, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
+import { getDetails, getRecommendations } from '~/services/Common';
 import NavigationHelper from '~/helpers/Navigation';
+import { backdropImage, posterImage } from '~/helpers/Image';
 
 import { 
   Container, 
@@ -14,58 +17,127 @@ import {
   Info, 
   Content,
   Overview,
-  Suggestions 
+  Recommendations,
+  Label
 } from './styles';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import ListMedia  from '~/components/UI/listMedia';
+import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
 
-class DetailsScreen extends Component {
-    static navigationOptions = {
-      headerLeft: (
-        <Icon 
-          style={{ paddingLeft: 10 }}
-          onPress={() => NavigationHelper.navigate('Home')}
-          name="md-arrow-back"
-          size={26}
-          color="#fff"
-        />
-      ),
-      title: 'Series - Toy Story 4',
-      headerStyle: {
-        backgroundColor: '#000',
-      },
-      headerTintColor: '#efefef',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    };
-    render() {
-      return (
-      <Container>
-        <ScrollView>
-        <Backdrop source={{uri: 'https://image.tmdb.org/t/p/w780/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}}>
+const DetailsSeries = ({ navigation }) => {
+
+  const mediaId = navigation.getParam('mediaId');
+  const [details, setDetails] = useState({});
+  const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const options = {
+    mediaType: 'tv',
+    mediaId
+  };
+
+  async function loadDetails() {
+    try {
+      setLoading(true);
+      const response = await getDetails(options);
+      setDetails(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  async function loadRecommendations() {
+    try {
+      setLoading(true);
+      const response = await getRecommendations(options);
+      setRecommendations(response.data.results);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  useEffect(() => {
+    loadDetails();
+    loadRecommendations();
+  }, [mediaId]);
+
+  return (
+  <Container>
+    <Loading visible={loading} />
+    {
+      !loading
+      &&
+      <ScrollView>
+        <Backdrop 
+          source={{uri: backdropImage(details.backdrop_path)}}
+          resizeMode="contain"
+        >
+          <VoteAverage>
+              <Icon
+                name="md-star"
+                size={24}
+                color="#000"
+              />
+              <Label>{ details.vote_average }</Label>
+            </VoteAverage>
           <Header>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
+            <Poster 
+              source={{uri: posterImage(details.poster_path)}}
+              resizeMode="contain" 
+            />
+            
             <Info>
-              <Title>Toy Story 4</Title>
-              <Category>Adventure | Animation | Comedy | Family</Category>
-              <VoteAverage>Ratings</VoteAverage>
+              <Title>{ details.name }</Title>
+              <Category>{ genres(details) }</Category>
             </Info>
           </Header>
         </Backdrop>
           <Content>
-            <Overview>Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.</Overview>
+            <Overview>{ details.overview }</Overview>
           </Content>
-          <Suggestions>
-            <ListMedia />
-          </Suggestions>
-        </ScrollView>
-      </Container>
-      );
-    }  
+          <Recommendations>
+          {
+            (recommendations.length > 0)
+            &&
+            <ListMedia 
+              title="Recommendations" 
+              data={recommendations}
+              mediaType="tv"
+              routeName="DetailsSeries"
+            />
+          }
+          </Recommendations>
+      </ScrollView> 
+    }
+  </Container>
+  );
 }
 
-export default DetailsScreen;
+const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
+
+DetailsSeries.navigationOptions = ({ navigation }) => ({
+  headerLeft: (
+    <Icon 
+      style={{ paddingLeft: 10 }}
+      onPress={() => NavigationHelper.navigate('Home')}
+      name="md-arrow-back"
+      size={26}
+      color="#fff"
+    />
+  ),
+  title: navigation.getParam('title'),
+  headerStyle: {
+    backgroundColor: '#000',
+  },
+  headerTintColor: '#efefef',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+});
+
+export default DetailsSeries;

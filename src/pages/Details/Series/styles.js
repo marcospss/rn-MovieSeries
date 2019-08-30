@@ -28,7 +28,8 @@ export const Header = styled.View`
 export const Poster = styled.Image`
   width: 110px;
   height: 150px;
-  border-radius: 5px;
+  border-radius: 2px;
+  z-index: 1;
 `;
 
 export const Info = styled.View`
@@ -44,6 +45,7 @@ export const Title = styled.Text`
   font-size: ${theme.fontSize.md};
   font-weight: bold;
   margin-bottom: 5px;
+  width: 58%;
 `;
 
 export const Category = styled.Text`
@@ -51,13 +53,22 @@ export const Category = styled.Text`
   font-size: ${theme.fontSize.sm};
   line-height: ${theme.fontSize.md};
   margin-bottom: 5px;
+  width: 58%;
 `;
 
-export const VoteAverage = styled.Text`
-  color: ${theme.colors.primary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
+export const VoteAverage = styled.View`
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5;
+  top: 8px;
+  right: 0px;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  line-height: ${theme.fontSize.sm};
+  z-index: 10;
 `;
 
 export const Content = styled.View`
@@ -70,11 +81,16 @@ export const Overview = styled.Text`
   flex-direction: row;
   color: ${theme.colors.primary};
   padding: 10px;
-  line-height: ${theme.fontSize.md};
+  line-height: ${theme.fontSize.lg};
 `;
 
+export const Label = styled.Text`
+  color: ${theme.colors.secondary};
+  padding-left: 6px;
+  font-weight: bold;
+`;
 
-export const Suggestions = styled.View`
+export const Recommendations = styled.View`
   flex: 1;
   align-items: flex-start;
   flex-direction: column;
