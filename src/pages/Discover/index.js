@@ -21,7 +21,7 @@ class DiscoverScreen extends Component {
           <ScrollView>
             <Content>
               <Poster>
-                <TouchableOpacity onPress={() => NavigationHelper.navigate('DetailsSeries')}>
+                <TouchableOpacity onPress={() => NavigationHelper.navigate('SeriesDetails')}>
                   <Image source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
                 </TouchableOpacity>
               </Poster>
@@ -34,7 +34,7 @@ class DiscoverScreen extends Component {
             </Content>
             <Content>
               <Poster>
-                <TouchableOpacity onPress={() => NavigationHelper.navigate('DetailsSeries')}>
+                <TouchableOpacity onPress={() => NavigationHelper.navigate('SeriesDetails')}>
                   <Image source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
                 </TouchableOpacity>
               </Poster>
@@ -47,7 +47,7 @@ class DiscoverScreen extends Component {
             </Content>
             <Content>
               <Poster>
-                <TouchableOpacity onPress={() => NavigationHelper.navigate('DetailsSeries')}>
+                <TouchableOpacity onPress={() => NavigationHelper.navigate('SeriesDetails')}>
                   <Image source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
                 </TouchableOpacity>
               </Poster>
@@ -60,7 +60,7 @@ class DiscoverScreen extends Component {
             </Content>
             <Content>
               <Poster>
-                <TouchableOpacity onPress={() => NavigationHelper.navigate('DetailsSeries')}>
+                <TouchableOpacity onPress={() => NavigationHelper.navigate('SeriesDetails')}>
                   <Image source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
                 </TouchableOpacity>
               </Poster>

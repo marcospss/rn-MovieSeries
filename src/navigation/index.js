@@ -15,7 +15,7 @@ import Series from '~/pages/Series';
 import Search from '~/pages/Search';
 import Favorites from '~/pages/Favorites';
 import Discover from '~/pages/Discover';
-import { DetailsMovies, DetailsSeries } from '~/pages/Details';
+import { MoviesDetails, SeriesDetails } from '~/pages/Details';
 import logo from '~/assets/images/imdb-logo.png';
 
 Icon.loadFont();
@@ -138,11 +138,11 @@ const MainTabs = createBottomTabNavigator(
 
 const DetailsStack = createStackNavigator(
   {
-    DetailsMovies: {
-      screen: DetailsMovies,
+    MoviesDetails: {
+      screen: MoviesDetails,
     },
-    DetailsSeries: {
-      screen: DetailsSeries,
+    SeriesDetails: {
+      screen: SeriesDetails,
     }
   }
 );

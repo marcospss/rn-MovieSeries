@@ -70,26 +70,26 @@ export default MoviesScreen = ({ filterProperties, navigation }) => {
         endListCarousel={endListCarousel}
         showIconEndList={showIconEndList}
         mediaType={filterProperties.mediaType}
-        routeName="DetailsMovies"
+        routeName="MoviesDetails"
       />
       <ScrollView>
         <ListMedia 
           title="Popular Movies" 
           data={popular}
           mediaType={filterProperties.mediaType}
-          routeName="DetailsMovies"
+          routeName="MoviesDetails"
         />
         <ListMedia 
           title="Top Rated Movies"
           data={topRated} 
           mediaType={filterProperties.mediaType}
-          routeName="DetailsMovies"
+          routeName="MoviesDetails"
         />
         <ListMedia 
           title="Upcoming Movies" 
           data={upcoming}
           mediaType={filterProperties.mediaType}
-          routeName="DetailsMovies"
+          routeName="MoviesDetails"
         />
       </ScrollView>
     </Container>

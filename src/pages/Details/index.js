@@ -1,7 +1,7 @@
-import DetailsMovies from './Movies';
-import DetailsSeries from './Series';
+import MoviesDetails from './Movies';
+import SeriesDetails from './Series';
 
 export {
-  DetailsMovies,
-  DetailsSeries,
+  MoviesDetails,
+  SeriesDetails,
 }

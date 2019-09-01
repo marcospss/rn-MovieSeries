@@ -27,7 +27,6 @@ import Loading from '~/components/UI/loading';
 Icon.loadFont();
 
 const DetailsSeries = ({ navigation }) => {
-
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
   const [recommendations, setRecommendations] = useState([]);
@@ -108,7 +107,7 @@ const DetailsSeries = ({ navigation }) => {
               title="Recommendations" 
               data={recommendations}
               mediaType="tv"
-              routeName="DetailsSeries"
+              routeName="SeriesDetails"
             />
           }
           </Recommendations>

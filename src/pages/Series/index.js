@@ -10,7 +10,7 @@ import { Container } from '~/styles';
 import Carousel  from '~/components/UI/carousel';
 import ListMedia  from '~/components/UI/listMedia';
 
-export default SeriesScreen = ({ filterProperties, navigation }) => {
+export default SeriesScreen = ({ filterProperties }) => {
   const [endListCarousel, setEndListCarousel] = useState(false);
   const [onTheAir, setOnTheAir] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -70,26 +70,26 @@ export default SeriesScreen = ({ filterProperties, navigation }) => {
         endListCarousel={endListCarousel}
         showIconEndList={showIconEndList}
         mediaType={filterProperties.mediaType}
-        routeName="DetailsSeries"
+        routeName="SeriesDetails"
       />
       <ScrollView>
         <ListMedia 
           title="Top Rated TV Shows"
           data={topRated} 
           mediaType={filterProperties.mediaType}
-          routeName="DetailsSeries"
+          routeName="SeriesDetails"
         />
         <ListMedia 
           title="Currently Airing TV Shows" 
           data={onTheAir}
           mediaType={filterProperties.mediaType}
-          routeName="DetailsSeries"
+          routeName="SeriesDetails"
         />
         <ListMedia 
           title="TV Shows Airing Today" 
           data={airingToday}
           mediaType={filterProperties.mediaType}
-          routeName="DetailsSeries"
+          routeName="SeriesDetails"
         />
       </ScrollView>
     </Container>

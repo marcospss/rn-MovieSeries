@@ -29,7 +29,7 @@ class SearchScreen extends Component {
       <Container>
         <ScrollView>
           <Content>
-          <TouchableOpacity onPress={() => NavigationHelper.navigate('DetailsMovies')}>
+          <TouchableOpacity onPress={() => NavigationHelper.navigate('MoviesDetails')}>
             <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
           </TouchableOpacity>
             <Details>
@@ -38,7 +38,7 @@ class SearchScreen extends Component {
               <Category>August 6th 2019, 2h 30m</Category>
               <VoteAverage>Rating: 7.2 </VoteAverage>
               <Actions>
-                <Button onPress={() => NavigationHelper.navigate('DetailsMovies')}>
+                <Button onPress={() => NavigationHelper.navigate('MoviesDetails')}>
                   <Label>
                     Read more
                   </Label>
