@@ -119,24 +119,24 @@ const DetailsMovie = ({ navigation }) => {
 
 const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
 
-DetailsMovie.navigationOptions = ({ navigation }) => ({
-  headerLeft: (
-    <Icon 
-      style={{ paddingLeft: 10 }}
-      onPress={() => NavigationHelper.navigate('Home')}
-      name="md-arrow-back"
-      size={26}
-      color="#fff"
-    />
-  ),
-  title: navigation.getParam('title'),
-  headerStyle: {
-    backgroundColor: '#000',
-  },
-  headerTintColor: '#efefef',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-  },
-});
+// DetailsMovie.navigationOptions = ({ navigation }) => ({
+//   headerLeft: (
+//     <Icon 
+//       style={{ paddingLeft: 10 }}
+//       onPress={() => NavigationHelper.navigate('Home')}
+//       name="md-arrow-back"
+//       size={26}
+//       color="#fff"
+//     />
+//   ),
+//   title: navigation.getParam('title'),
+//   headerStyle: {
+//     backgroundColor: '#000',
+//   },
+//   headerTintColor: '#efefef',
+//   headerTitleStyle: {
+//     fontWeight: 'bold',
+//   },
+// });
 
 export default DetailsMovie;

@@ -11,6 +11,7 @@ YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillUpdate is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
+    'Warning: Async Storage has been extracted',
 ]);
 
 export default App = () => {

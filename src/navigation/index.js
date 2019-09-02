@@ -9,7 +9,6 @@ import {
 } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import NavigationHelper from '~/helpers/Navigation';
 import Movies from '~/pages/Movies';
 import Series from '~/pages/Series';
 import Search from '~/pages/Search';
@@ -41,7 +40,7 @@ const defaultNavigation = {
     headerRight: (
       <Icon 
         style={{ paddingLeft: 10 }}
-        onPress={() => NavigationHelper.navigate('Favorites')}
+        onPress={() => navigation.navigate('Favorites')}
         name="heart"
         size={26}
         color="#fff"
@@ -49,6 +48,26 @@ const defaultNavigation = {
     ),
   })
 };
+
+const detailsNavigationOptions = ({ navigation }) => ({
+    headerLeft: (
+      <Icon 
+        style={{ paddingLeft: 10 }}
+        onPress={() => navigation.navigate('Home')}
+        name="chevron-left"
+        size={20}
+        color="#fff"
+      />
+    ),
+    title: navigation.getParam('title'),
+    headerStyle: {
+      backgroundColor: '#000',
+    },
+    headerTintColor: '#efefef',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  });
 
 const MoviesStack = createStackNavigator(
   {
@@ -59,6 +78,15 @@ const MoviesStack = createStackNavigator(
   defaultNavigation
 );
 
+const MoviesDetailsStack = createStackNavigator(
+  {
+    MoviesDetails: {
+      screen: MoviesDetails,
+      navigationOptions: detailsNavigationOptions,
+    }
+  }
+);
+
 const SeriesStack = createStackNavigator(
   {
     Series: {
@@ -66,6 +94,15 @@ const SeriesStack = createStackNavigator(
     }
   },
   defaultNavigation
+);
+
+const SeriesDetailsStack = createStackNavigator(
+  {
+    SeriesDetails: {
+      screen: SeriesDetails,
+      navigationOptions: detailsNavigationOptions,
+    }
+  }
 );
 
 const SearchStack = createStackNavigator(
@@ -136,16 +173,14 @@ const MainTabs = createBottomTabNavigator(
   }
 );
 
-const DetailsStack = createStackNavigator(
-  {
-    MoviesDetails: {
-      screen: MoviesDetails,
-    },
-    SeriesDetails: {
-      screen: SeriesDetails,
-    }
-  }
-);
+// const DetailsStack = createStackNavigator({
+//     MoviesDetails: {
+//         screen: MoviesDetails,
+//     },
+//     SeriesDetails: {
+//         screen: SeriesDetails,
+//     }
+// });
 
 const MainDrawer = createDrawerNavigator(
   {
@@ -167,21 +202,33 @@ const MainDrawer = createDrawerNavigator(
         drawerIcon: (<Icon name='heart' size={24} color="#000" />)
       }
     },
-    DetailsScreens: {
-      screen: DetailsStack,
+    MoviesDetailsStack: {
+      screen: MoviesDetailsStack,
       navigationOptions: {
         drawerLabel: <Hidden />,
       }
-    }
+    },
+    SeriesDetailsStack: {
+      screen: SeriesDetailsStack,
+      navigationOptions: {
+        drawerLabel: <Hidden />,
+      }
+    },
+    // DetailsScreens: {
+    // screen: DetailsStack,
+    //     navigationOptions: {
+    //         drawerLabel: < Hidden /> ,
+    //     }
+    // }
   }
 );
 
 const AppModalStack = createStackNavigator(
   {
     App: MainDrawer,
-    DetailsScreens: {
-      screen: DetailsStack,
-    }
+    // DetailsScreens: {
+    //     screen: DetailsStack,
+    // }
   },
   {
     mode: "modal",
