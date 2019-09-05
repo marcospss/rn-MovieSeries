@@ -12,9 +12,8 @@ const paramsDefault = `api_key=${SETTINGS.apikey}&language=${SETTINGS.language}`
  * @returns Returns the cast and crew of a movie or TV show.
  */
 export function getCredits(properties) {
-  const mediaType = properties.mediaType,
-    id = properties.mediaId;
-  return INSTANCE.get(`/${mediaType}/${id}/credits?${paramsDefault}`);
+  const { mediaType, mediaId } = properties;
+  return INSTANCE.get(`/${mediaType}/${mediaId}/credits?${paramsDefault}`);
 }
 
 /**
@@ -23,9 +22,8 @@ export function getCredits(properties) {
  * @param properties
  */
 export function getRecommendations(properties) {
-  const mediaType = properties.mediaType,
-    id = properties.mediaId;
-  return INSTANCE.get(`/${mediaType}/${id}/recommendations?${paramsDefault}`);
+  const { mediaType, mediaId } = properties;
+  return INSTANCE.get(`/${mediaType}/${mediaId}/recommendations?${paramsDefault}`);
 }
 
 /**
@@ -35,9 +33,8 @@ export function getRecommendations(properties) {
  * @param properties
  */
 export function getSimilar(properties) {
-  const mediaType = properties.mediaType,
-    id = properties.mediaId;
-  return INSTANCE.get(`/${mediaType}/${id}/similar?${paramsDefault}`);
+  const { mediaType, mediaId } = properties;
+  return INSTANCE.get(`/${mediaType}/${mediaId}/similar?${paramsDefault}`);
 }
 
 /**
@@ -64,9 +61,8 @@ export function getTopRated(mediaType) {
  * @param properties
  */
 export function getDetails(properties) {
-  const mediaType = properties.mediaType,
-    id = properties.mediaId;
-  return INSTANCE.get(`/${mediaType}/${id}?${paramsDefault}`);
+  const { mediaType, mediaId } = properties;
+  return INSTANCE.get(`/${mediaType}/${mediaId}?${paramsDefault}`);
 }
 
 /**

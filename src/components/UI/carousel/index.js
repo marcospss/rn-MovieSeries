@@ -8,9 +8,14 @@ import NavigationHelper from '~/helpers/Navigation';
 
 import { Container, Section, Backdrop, Header, Release, Title } from './styles';
 
-const titleFormat = (item) => {
+const titleFormat = item => {
     const title = (item.title) ? item.title : item.name;
     return (title.length > 28) ? `${title.substring(0,28)}...` : title;
+}
+
+const release = (item, mediaType) => {
+    const dateMedia = (item.release_date) ? item.release_date : item.first_air_date;
+    return `${mediaType === 'movie' ? 'Release Date' : 'First Air Date'}: ${DateHelper.longFormat(dateMedia)}`;
 }
 
 Icon.loadFont();
@@ -50,7 +55,7 @@ const Carousel = ({ data, title, endListCarousel, showIconEndList, mediaType, ro
                         >
                             <Header>
                                 <Title>{ titleFormat(item) }</Title>
-                                <Release>{DateHelper.longFormat(item.release_date)}</Release>
+                                <Release>{ release(item, mediaType) }</Release>
                             </Header>
                         </Backdrop>
                     </TouchableOpacity>

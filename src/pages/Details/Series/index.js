@@ -3,7 +3,6 @@ import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getDetails, getRecommendations } from '~/services/Common';
-import NavigationHelper from '~/helpers/Navigation';
 import { backdropImage, posterImage } from '~/helpers/Image';
 
 import { 
@@ -22,6 +21,7 @@ import {
 } from './styles';
 
 import ListMedia  from '~/components/UI/listMedia';
+import ListSeasons  from '~/components/UI/listSeasons';
 import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
@@ -101,6 +101,17 @@ const DetailsSeries = ({ navigation }) => {
           </Content>
           <Recommendations>
           {
+            details.seasons && (details.seasons.length > 0) && 
+            <ListSeasons 
+              title="Seasons" 
+              data={details.seasons.reverse()}
+              mediaId={mediaId}
+              routeName="SeasonDetailsById"
+            />
+          }
+          </Recommendations>
+          <Recommendations>
+          {
             (recommendations.length > 0)
             &&
             <ListMedia 
@@ -118,25 +129,5 @@ const DetailsSeries = ({ navigation }) => {
 }
 
 const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
-
-// DetailsSeries.navigationOptions = ({ navigation }) => ({
-//   headerLeft: (
-//     <Icon 
-//       style={{ paddingLeft: 10 }}
-//       onPress={() => NavigationHelper.navigate('Home')}
-//       name="md-arrow-back"
-//       size={26}
-//       color="#fff"
-//     />
-//   ),
-//   title: navigation.getParam('title'),
-//   headerStyle: {
-//     backgroundColor: '#000',
-//   },
-//   headerTintColor: '#efefef',
-//   headerTitleStyle: {
-//     fontWeight: 'bold',
-//   },
-// });
 
 export default DetailsSeries;

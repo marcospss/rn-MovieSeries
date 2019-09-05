@@ -34,3 +34,15 @@ export function getAiringToday() {
 export function getOnTheAir() {
     return INSTANCE.get(`/tv/on_the_air?${paramsDefault}`);
 }
+
+/**
+ * Get TV Seasons
+ * Get the TV season details by id.
+ * @method getSeasonDetailsById()
+ * @param properties
+ * @returns  List of TV season details by id
+ */
+export function getSeasonDetailsById(properties) {
+    const { mediaId, seasonNumber } = properties;
+    return INSTANCE.get(`/tv/${mediaId}/season/${seasonNumber}?${paramsDefault}`);
+}

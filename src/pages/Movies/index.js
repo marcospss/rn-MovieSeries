@@ -10,7 +10,7 @@ import { Container } from '~/styles';
 import Carousel  from '~/components/UI/carousel';
 import ListMedia  from '~/components/UI/listMedia';
 
-export default MoviesScreen = ({ filterProperties, navigation }) => {
+export default MoviesScreen = ({ filterProperties }) => {
   const [endListCarousel, setEndListCarousel] = useState(false);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [popular, setPopular] = useState([]);

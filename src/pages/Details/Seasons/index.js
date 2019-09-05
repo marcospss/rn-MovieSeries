@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { getDetails, getRecommendations } from '~/services/Common';
+import { getSeasonDetailsById } from '~/services/Tv';
 import { backdropImage, posterImage } from '~/helpers/Image';
 
 import { 
@@ -25,43 +25,29 @@ import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
 
-const DetailsMovie = ({ navigation }) => {
+const DetailsSeries = ({ navigation }) => {
   const mediaId = navigation.getParam('mediaId');
+  const seasonNumber = navigation.getParam('seasonNumber');
   const [details, setDetails] = useState({});
-  const [recommendations, setRecommendations] = useState([]);
   const [loading, setLoading] = useState(false);
   const options = {
-    mediaType: 'movie',
-    mediaId
+    mediaId,
+    seasonNumber,
   };
 
   async function loadDetails() {
     try {
       setLoading(true);
-      const response = await getDetails(options);
+      const response = await getSeasonDetailsById(options);
       setDetails(response.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
-
-  async function loadRecommendations() {
-    try {
-      setLoading(true);
-      const response = await getRecommendations(options);
-      setRecommendations(response.data.results);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
 
   useEffect(() => {
     loadDetails();
-    loadRecommendations();
   }, [mediaId]);
 
   return (
@@ -90,7 +76,7 @@ const DetailsMovie = ({ navigation }) => {
             />
             
             <Info>
-              <Title>{ details.title }</Title>
+              <Title>{ details.name }</Title>
               <Category>{ genres(details) }</Category>
             </Info>
           </Header>
@@ -98,18 +84,6 @@ const DetailsMovie = ({ navigation }) => {
           <Content>
             <Overview>{ details.overview }</Overview>
           </Content>
-          <Recommendations>
-          {
-            (recommendations.length > 0)
-            &&
-            <ListMedia 
-              title="Recommendations" 
-              data={recommendations}
-              mediaType="movie"
-              routeName="MoviesDetails"
-            />
-          }
-          </Recommendations>
       </ScrollView> 
     }
   </Container>
@@ -118,24 +92,4 @@ const DetailsMovie = ({ navigation }) => {
 
 const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
 
-// DetailsMovie.navigationOptions = ({ navigation }) => ({
-//   headerLeft: (
-//     <Icon 
-//       style={{ paddingLeft: 10 }}
-//       onPress={() => NavigationHelper.navigate('Home')}
-//       name="md-arrow-back"
-//       size={26}
-//       color="#fff"
-//     />
-//   ),
-//   title: navigation.getParam('title'),
-//   headerStyle: {
-//     backgroundColor: '#000',
-//   },
-//   headerTintColor: '#efefef',
-//   headerTitleStyle: {
-//     fontWeight: 'bold',
-//   },
-// });
-
-export default DetailsMovie;
+export default DetailsSeries;
