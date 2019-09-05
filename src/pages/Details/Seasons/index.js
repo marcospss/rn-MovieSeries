@@ -3,29 +3,28 @@ import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getSeasonDetailsById } from '~/services/Tv';
-import { backdropImage, posterImage } from '~/helpers/Image';
+import { posterImage } from '~/helpers/Image';
 
 import { 
   Container, 
-  Backdrop, 
   Header, 
-  Title, 
-  Category,
-  VoteAverage,
-  Poster, 
-  Info, 
+  Poster,
+  Info,
+  Title,
+  Season,
+  Episodes,
+  Release,
   Content,
   Overview,
-  Recommendations,
-  Label
 } from './styles';
 
-import ListMedia  from '~/components/UI/listMedia';
+import DateHelper from '~/helpers/Date';
 import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
 
-const DetailsSeries = ({ navigation }) => {
+const DetailsSeason = ({ navigation }) => {
+  const mediaTitle = navigation.getParam('mediaTitle');
   const mediaId = navigation.getParam('mediaId');
   const seasonNumber = navigation.getParam('seasonNumber');
   const [details, setDetails] = useState({});
@@ -57,30 +56,18 @@ const DetailsSeries = ({ navigation }) => {
       !loading
       &&
       <ScrollView>
-        <Backdrop 
-          source={{uri: backdropImage(details.backdrop_path)}}
-          resizeMode="contain"
-        >
-          <VoteAverage>
-              <Icon
-                name="md-star"
-                size={24}
-                color="#000"
-              />
-              <Label>{ details.vote_average }</Label>
-            </VoteAverage>
           <Header>
             <Poster 
               source={{uri: posterImage(details.poster_path)}}
               resizeMode="contain" 
             />
-            
             <Info>
-              <Title>{ details.name }</Title>
-              <Category>{ genres(details) }</Category>
+              <Title>{ mediaTitle }</Title>
+              <Season>{ details.name }</Season>
+              <Episodes>{ details.episodes && details.episodes.length } episodes</Episodes>
+              <Release>Air date: { DateHelper.longFormat(details.air_date)}</Release>
             </Info>
           </Header>
-        </Backdrop>
           <Content>
             <Overview>{ details.overview }</Overview>
           </Content>
@@ -90,6 +77,4 @@ const DetailsSeries = ({ navigation }) => {
   );
 }
 
-const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
-
-export default DetailsSeries;
+export default DetailsSeason;

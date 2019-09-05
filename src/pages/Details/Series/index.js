@@ -106,6 +106,7 @@ const DetailsSeries = ({ navigation }) => {
               title="Seasons" 
               data={details.seasons.reverse()}
               mediaId={mediaId}
+              mediaTitle={details.name}
               routeName="SeasonDetailsById"
             />
           }

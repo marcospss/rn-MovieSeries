@@ -6,7 +6,7 @@ import { posterImage } from '~/helpers/Image';
 
 import { Container, Section, Poster, Title } from './styles';
 
-export default ListSeasons = ({ title, data, routeName, mediaId }) => {
+export default ListSeasons = ({ title, data, routeName, mediaTitle, mediaId }) => {
     return (
         <>
             <Container>
@@ -17,9 +17,9 @@ export default ListSeasons = ({ title, data, routeName, mediaId }) => {
                         keyExtractor={item => String(item.id)}
                         renderItem={({ item }) => (
                             <TouchableOpacity onPress={() => NavigationHelper.navigate(routeName, {
+                                mediaTitle,
                                 mediaId,    
                                 seasonNumber: item.season_number,
-                                title: item.name,
                             })}
                             >
                                 <Poster 

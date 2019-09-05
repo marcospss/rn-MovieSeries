@@ -118,7 +118,7 @@ const SeriesDetailsStack = createStackNavigator(
             color="#fff"
           />
         ),
-        title: navigation.getParam('title'),
+        title: 'Episode List',
         headerStyle: {
           backgroundColor: '#000',
         },
