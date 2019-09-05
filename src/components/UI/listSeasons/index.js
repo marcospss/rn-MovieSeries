@@ -3,8 +3,18 @@ import { FlatList, TouchableOpacity } from 'react-native';
 
 import NavigationHelper from '~/helpers/Navigation';
 import { posterImage } from '~/helpers/Image';
+import DateHelper from '~/helpers/Date';
 
-import { Container, Section, Poster, Title } from './styles';
+import { 
+    Container,
+    Section,
+    Item,
+    Info,
+    Poster,
+    Title,
+    Episodes,
+    Release,
+} from './styles';
 
 export default ListSeasons = ({ title, data, routeName, mediaTitle, mediaId }) => {
     return (
@@ -22,11 +32,17 @@ export default ListSeasons = ({ title, data, routeName, mediaTitle, mediaId }) =
                                 seasonNumber: item.season_number,
                             })}
                             >
-                                <Poster 
-                                    source={{uri: posterImage(item.poster_path)}}
-                                    resizeMode="contain"
-                                />
-                                <Title>{ item.name }</Title>
+                                <Item>
+                                    <Poster 
+                                        source={{uri: posterImage(item.poster_path)}}
+                                        resizeMode="contain"
+                                    />
+                                    <Info>
+                                        <Title>{ item.name }</Title>
+                                        <Episodes>{ item.episode_count } episodes</Episodes>
+                                        <Release>Air date: { DateHelper.longFormat(item.air_date)}</Release>
+                                    </Info>
+                                </Item>
                             </TouchableOpacity>
                         )}
                     />

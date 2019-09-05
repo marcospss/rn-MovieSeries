@@ -15,17 +15,48 @@ export const Section = styled.Text`
   margin: 10px;
 `;
 
+export const Item = styled.View`
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 300px;
+`;
+
 export const Poster = styled.Image`
   width: 110px;
   height: 150px;
   border-radius: 5;
-  margin: 8px;
+`;
+
+export const Info = styled.View`
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
 `;
 
 export const Title = styled.Text`
-  width: 110;
+  font-size: ${theme.fontSize.md};
   color: ${theme.colors.primary};
-  font-size: 14;
-  margin: 10px;
-  overflow: hidden;
+  font-weight: bold;
+  margin-bottom: 5px;
 `;
+
+export const Season = styled.Text`
+  font-size: ${theme.fontSize.sm};
+  color: ${theme.colors.primary};
+  font-weight: bold;
+  margin-bottom: 5px;
+`;
+
+export const Episodes = styled.Text`
+  font-size: ${theme.fontSize.sm};
+  color: ${theme.colors.primary};
+  margin-bottom: 5px;
+  font-weight: bold;
+`;
+
+export const Release = styled.Text`
+  font-size: ${theme.fontSize.sm};
+  color: ${theme.colors.primary};
+  font-weight: bold;
+`;
+
