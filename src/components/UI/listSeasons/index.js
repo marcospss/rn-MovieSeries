@@ -1,52 +1,60 @@
 import React from 'react';
-import { FlatList, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
-import NavigationHelper from '~/helpers/Navigation';
-import { posterImage } from '~/helpers/Image';
+import { stillImage } from '~/helpers/Image';
 import DateHelper from '~/helpers/Date';
 
 import { 
     Container,
     Section,
     Item,
+    Header,
     Info,
     Poster,
+    VoteAverage,
+    Label,
     Title,
-    Episodes,
     Release,
+    Content,
+    Overview
 } from './styles';
 
-export default ListSeasons = ({ title, data, routeName, mediaTitle, mediaId }) => {
+Icon.loadFont();
+
+export default ListSeasons = ({ title, data }) => {
     return (
-        <>
-            <Container>
-                <Section>{ title }</Section>
-                    <FlatList 
-                        horizontal={true}
-                        data={data}
-                        keyExtractor={item => String(item.id)}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity onPress={() => NavigationHelper.navigate(routeName, {
-                                mediaTitle,
-                                mediaId,    
-                                seasonNumber: item.season_number,
-                            })}
-                            >
-                                <Item>
-                                    <Poster 
-                                        source={{uri: posterImage(item.poster_path)}}
-                                        resizeMode="contain"
-                                    />
-                                    <Info>
-                                        <Title>{ item.name }</Title>
-                                        <Episodes>{ item.episode_count } episodes</Episodes>
-                                        <Release>Air date: { DateHelper.longFormat(item.air_date)}</Release>
-                                    </Info>
-                                </Item>
-                            </TouchableOpacity>
-                        )}
-                    />
-            </Container>
-        </>
+        <Container>
+            <Section>Episodes { title }</Section>
+                <FlatList 
+                    data={data}
+                    keyExtractor={item => String(item.id)}
+                    renderItem={({ item }) => (
+                        <Item>
+                            <Header>
+                                <Poster 
+                                    source={{uri: stillImage(item.still_path, 'w185')}}
+                                    resizeMode="contain"
+                                />
+                                <VoteAverage>
+                                <Icon
+                                    name="md-star"
+                                    size={24}
+                                    color="#000"
+                                />
+                                <Label>{ item.vote_average.toFixed(1) }</Label>
+                                </VoteAverage>
+                                <Info>
+                                    <Title>{ item.episode_number }. { item.name }</Title>
+                                    <Release>{ DateHelper.longFormat(item.air_date)}</Release>
+                                </Info>
+                            </Header>
+                            <Content>
+                                <Overview>{ item.overview }</Overview>
+                            </Content>
+                        </Item>
+                    )}
+                />
+        </Container>
     );
 };

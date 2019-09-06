@@ -21,7 +21,7 @@ import {
 } from './styles';
 
 import ListMedia  from '~/components/UI/listMedia';
-import ListSeasons  from '~/components/UI/listSeasons';
+import CarouselSeasons  from '~/components/UI/carouselSeasons';
 import Loading from '~/components/UI/loading';
 
 Icon.loadFont();
@@ -102,7 +102,7 @@ const DetailsSeries = ({ navigation }) => {
           <Recommendations>
           {
             details.seasons && (details.seasons.length > 0) && 
-            <ListSeasons 
+            <CarouselSeasons 
               title="Seasons" 
               data={details.seasons.reverse()}
               mediaId={mediaId}

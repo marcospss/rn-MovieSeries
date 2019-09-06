@@ -1,26 +1,34 @@
 import IMAGES_SETTINGS from "~/config/ImageSettings";
 import defaultImage from '~/assets/images/default-image.png';
 
-export const posterImage = (poster_path, size = 'w92') => {
+export const posterImage = (imagePath, size = 'w92') => {
     const sizeImage = IMAGES_SETTINGS.poster_sizes[size];
-    if (!poster_path) {
+    if (!imagePath) {
         return `${defaultImage}`;
     }
-    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${poster_path}`;
+    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${imagePath}`;
 }
 
-export const backdropImage = (backdrop_path, size = 'w300') => {
+export const stillImage = (imagePath, size = 'w92') => {
+    const sizeImage = IMAGES_SETTINGS.still_sizes[size];
+    if (!imagePath) {
+        return `${defaultImage}`;
+    }
+    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${imagePath}`;
+}
+
+export const backdropImage = (imagePath, size = 'w300') => {
     const sizeImage = IMAGES_SETTINGS.backdrop_sizes[size];
-    if (!backdrop_path) {
+    if (!imagePath) {
         return `${defaultImage}`;
     }
-    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${backdrop_path}`;
+    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${imagePath}`;
 }
 
-export const profileImage = (profile_sizes, size = 'w185') => {
+export const profileImage = (imagePath, size = 'w185') => {
     const sizeImage = IMAGES_SETTINGS.profile_sizes[size];
-    if (!profile_sizes) {
+    if (!imagePath) {
         return `${defaultImage}`;
     }
-    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${profile_sizes}`;
+    return `${IMAGES_SETTINGS.secure_base_url}${sizeImage}${imagePath}`;
 }

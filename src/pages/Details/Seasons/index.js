@@ -20,6 +20,7 @@ import {
 
 import DateHelper from '~/helpers/Date';
 import Loading from '~/components/UI/loading';
+import ListSeasons from '~/components/UI/listSeasons';
 
 Icon.loadFont();
 
@@ -70,6 +71,13 @@ const DetailsSeason = ({ navigation }) => {
           </Header>
           <Content>
             <Overview>{ details.overview }</Overview>
+            {
+              details.episodes && (details.episodes.length > 0) && 
+              <ListSeasons
+                title={details.name}
+                data={details.episodes}
+              />
+            }
           </Content>
       </ScrollView> 
     }
