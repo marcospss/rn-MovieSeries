@@ -6,6 +6,7 @@ export const Container = styled.View`
   flex: 1;
   align-items: flex-start;
   flex-direction: column;
+  padding: 10px;
 `;
 
 export const Section = styled.Text`
@@ -16,8 +17,8 @@ export const Section = styled.Text`
 `;
 
 export const Item = styled.View`
+  flex-grow: 1;
   flex-direction: column;
-  justify-content: flex-start;
   width: 100%;
   margin-bottom: 20px;
 `;
@@ -57,7 +58,7 @@ export const Label = styled.Text`
 
 export const Info = styled.View`
   flex-direction: column;
-  width: 100%;
+  flex-wrap: wrap;
   padding: 20px;
 `;
 
@@ -75,8 +76,8 @@ export const Release = styled.Text`
 `;
 
 export const Content = styled.View`
-  flex: 1;
   flex-direction: column;
+  flex-wrap: wrap;
 `;
 
 export const Overview = styled.Text`
