@@ -62,7 +62,6 @@ export const VoteAverage = styled.View`
   border-radius: 5;
   top: 8px;
   right: 0px;
-  flex: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -78,21 +77,14 @@ export const Content = styled.View`
 `;
 
 export const Overview = styled.Text`
-  flex-direction: row;
   color: ${theme.colors.primary};
   padding: 10px;
   line-height: ${theme.fontSize.lg};
+  text-align: justify;
 `;
 
 export const Label = styled.Text`
   color: ${theme.colors.secondary};
   padding-left: 6px;
   font-weight: bold;
-`;
-
-export const Recommendations = styled.View`
-  flex: 1;
-  align-items: flex-start;
-  flex-direction: column;
-  margin: 5px;
 `;

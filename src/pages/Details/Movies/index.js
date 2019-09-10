@@ -16,7 +16,6 @@ import {
   Info, 
   Content,
   Overview,
-  Recommendations,
   Label
 } from './styles';
 
@@ -98,7 +97,6 @@ const DetailsMovie = ({ navigation }) => {
           <Content>
             <Overview>{ details.overview }</Overview>
           </Content>
-          <Recommendations>
           {
             (recommendations.length > 0)
             &&
@@ -109,7 +107,6 @@ const DetailsMovie = ({ navigation }) => {
               routeName="MoviesDetails"
             />
           }
-          </Recommendations>
       </ScrollView> 
     }
   </Container>

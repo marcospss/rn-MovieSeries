@@ -3,9 +3,6 @@ import styled from 'styled-components/native';
 import theme from '~/styles/theme';
 
 export const Container = styled.View`
-  flex: 1;
-  align-items: flex-start;
-  flex-direction: column;
   padding: 10px;
 `;
 
@@ -17,15 +14,12 @@ export const Section = styled.Text`
 `;
 
 export const Item = styled.View`
-  flex-grow: 1;
-  flex-direction: column;
-  width: 100%;
   margin-bottom: 20px;
 `;
 
 export const Header = styled.View`
+  flex: 1 0;
   flex-direction: row;
-  justify-content: flex-start;
   width: 100%;
 `;
 
@@ -40,12 +34,11 @@ export const VoteAverage = styled.View`
   background: rgba(255, 255, 255, 0.7);
   border-radius: 3;
   top: 0px;
-  left: 130px;
-  flex: 1;
+  left: 124px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding: 2px 8px;
   line-height: ${theme.fontSize.sm};
   z-index: 10;
 `;
@@ -57,8 +50,8 @@ export const Label = styled.Text`
 `;
 
 export const Info = styled.View`
+  flex: 1 0;
   flex-direction: column;
-  flex-wrap: wrap;
   padding: 20px;
 `;
 
@@ -76,12 +69,13 @@ export const Release = styled.Text`
 `;
 
 export const Content = styled.View`
+  flex: 1 0;
   flex-direction: column;
-  flex-wrap: wrap;
 `;
 
 export const Overview = styled.Text`
-  font-size: ${theme.fontSize.sm};
   color: ${theme.colors.primary};
   line-height: ${theme.fontSize.lg};
+  text-align: justify;
+  padding: 10px 0px;
 `;

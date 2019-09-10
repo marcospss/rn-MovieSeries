@@ -78,10 +78,10 @@ export const Content = styled.View`
 `;
 
 export const Overview = styled.Text`
-  flex-direction: row;
   color: ${theme.colors.primary};
   padding: 10px;
   line-height: ${theme.fontSize.lg};
+  text-align: justify;
 `;
 
 export const Label = styled.Text`
@@ -91,8 +91,5 @@ export const Label = styled.Text`
 `;
 
 export const Recommendations = styled.View`
-  flex: 1;
-  align-items: flex-start;
-  flex-direction: column;
-  margin: 5px;
+  margin-bottom: 10px;
 `;

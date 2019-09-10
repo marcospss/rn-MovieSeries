@@ -23,7 +23,7 @@ export const Poster = styled.Image`
 `;
 
 export const Title = styled.Text`
-  width: 110;
+  max-width: 110px;
   color: ${theme.colors.primary};
   font-size: 14;
   margin: 10px;

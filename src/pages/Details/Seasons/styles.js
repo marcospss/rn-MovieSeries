@@ -8,8 +8,8 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Header = styled.View`
+  flex: 1 0;
   flex-direction: row;
-  justify-content: flex-start;
   width: 100%;
   padding: 10px;
 `;
@@ -23,7 +23,6 @@ export const Poster = styled.Image`
 
 export const Info = styled.View`
   flex-direction: column;
-  width: 100%;
   padding: 10px;
 `;
 
@@ -55,7 +54,7 @@ export const Release = styled.Text`
 `;
 
 export const Content = styled.View`
-  flex: 1;
+  flex: 1 0;
   flex-direction: column;
 `;
 
@@ -63,4 +62,5 @@ export const Overview = styled.Text`
   color: ${theme.colors.primary};
   padding: 10px;
   line-height: ${theme.fontSize.lg};
+  text-align: justify;
 `;

@@ -71,14 +71,14 @@ const DetailsSeason = ({ navigation }) => {
           </Header>
           <Content>
             <Overview>{ details.overview }</Overview>
-            {
-              details.episodes && (details.episodes.length > 0) && 
-              <ListSeasons
-                title={details.name}
-                data={details.episodes}
-              />
-            }
           </Content>
+          {
+            details.episodes && (details.episodes.length > 0) && 
+            <ListSeasons
+              title={details.name}
+              data={details.episodes}
+            />
+          }
       </ScrollView> 
     }
   </Container>

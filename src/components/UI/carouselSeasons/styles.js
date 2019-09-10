@@ -16,9 +16,9 @@ export const Section = styled.Text`
 `;
 
 export const Item = styled.View`
+  flex: 1 0;
   flex-direction: row;
-  justify-content: flex-start;
-  width: 300px;
+  width: 100%;
 `;
 
 export const Poster = styled.Image`
@@ -29,19 +29,11 @@ export const Poster = styled.Image`
 
 export const Info = styled.View`
   flex-direction: column;
-  width: 100%;
   padding: 10px;
 `;
 
 export const Title = styled.Text`
   font-size: ${theme.fontSize.md};
-  color: ${theme.colors.primary};
-  font-weight: bold;
-  margin-bottom: 5px;
-`;
-
-export const Season = styled.Text`
-  font-size: ${theme.fontSize.sm};
   color: ${theme.colors.primary};
   font-weight: bold;
   margin-bottom: 5px;
