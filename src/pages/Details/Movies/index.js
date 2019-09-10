@@ -21,6 +21,7 @@ import {
 
 import ListMedia  from '~/components/UI/listMedia';
 import Loading from '~/components/UI/loading';
+import Like from '~/components/UI/like';
 
 Icon.loadFont();
 
@@ -74,14 +75,15 @@ const DetailsMovie = ({ navigation }) => {
           source={{uri: backdropImage(details.backdrop_path)}}
           resizeMode="contain"
         >
+          <Like media={details} />
           <VoteAverage>
-              <Icon
-                name="md-star"
-                size={24}
-                color="#000"
-              />
-              <Label>{ details.vote_average }</Label>
-            </VoteAverage>
+            <Icon
+              name="md-star"
+              size={24}
+              color="#000"
+            />
+            <Label>{ details.vote_average }</Label>
+          </VoteAverage>
           <Header>
             <Poster 
               source={{uri: posterImage(details.poster_path)}}

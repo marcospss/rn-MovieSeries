@@ -3,7 +3,7 @@ import { Modal, ActivityIndicator } from 'react-native';
 
 import { Background, ActivityIndicatorWrapper } from './styles';
 
-const Loading = ({ visible }) => {
+export default Loading = ({ visible }) => {
     return (
         <Modal 
             visible={visible}
@@ -21,5 +21,3 @@ const Loading = ({ visible }) => {
         </Modal>
     );
 };
-
-export default Loading; 

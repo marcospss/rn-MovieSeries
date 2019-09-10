@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Backdrop, Header, Category, Title } from './styles';
 
-const MainHighlight = () => {
+export default MainHighlight = () => {
     return(
         <>
             <Backdrop source={{uri: 'https://image.tmdb.org/t/p/w780/m67smI1IIMmYzCl9axvKNULVKLr.jpg'}}>
@@ -14,5 +14,3 @@ const MainHighlight = () => {
         </>
     );
 };
-
-export default MainHighlight;

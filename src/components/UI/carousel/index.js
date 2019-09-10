@@ -20,7 +20,7 @@ const release = (item, mediaType) => {
 
 Icon.loadFont();
 
-const Carousel = ({ data, title, endListCarousel, showIconEndList, mediaType, routeName }) => {
+export default Carousel = ({ data, title, endListCarousel, showIconEndList, mediaType, routeName }) => {
     return (
         <Container>
             <Section>{ title }</Section>
@@ -64,5 +64,3 @@ const Carousel = ({ data, title, endListCarousel, showIconEndList, mediaType, ro
         </Container>
     );
 };
-
-export default Carousel;

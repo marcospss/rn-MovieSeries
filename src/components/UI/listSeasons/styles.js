@@ -52,7 +52,8 @@ export const Label = styled.Text`
 export const Info = styled.View`
   flex: 1 0;
   flex-direction: column;
-  padding: 20px;
+  justify-content: center;
+  padding-left: 14px;
 `;
 
 export const Title = styled.Text`
