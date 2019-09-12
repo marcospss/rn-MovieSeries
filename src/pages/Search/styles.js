@@ -7,72 +7,24 @@ export const Container = styled.SafeAreaView`
   background-color: ${theme.colors.secondary};
 `;
 
-export const Content = styled.View`
+export const SearchWrapper = styled.View`
   flex-direction: row;
   border-radius: 6px;
-  margin: 10px 0px;
+  align-items: center;
+  margin: 10px;
+  background: ${theme.colors.primary};
+  border-radius: 5;
 `;
 
-export const Poster = styled.Image`
-  width: 92px;
-  height: 138px;
-  border-radius: 6px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-`;
-
-export const Details = styled.View`
-  flex: 1;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 6px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-`;
-
-export const Title = styled.Text`
-  color: ${theme.colors.secondary};
+export const InputText = styled.TextInput.attrs({
+  placeholderTextColor: `${theme.colors.gray}`,
+  underlineColorAndroid: `${theme.colors.primary}`,
+  maxLength: 30,
+})`
+  display: flex;
   font-size: ${theme.fontSize.md};
-  font-weight: bold;
-  margin-bottom: 5px;
-  text-shadow: 0px 3px 9px rgba(0,0,0,0.3);
-  text-transform: uppercase;
-`;
-
-export const Category = styled.Text`
   color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
-  flex-wrap: wrap;
-`;
-
-export const VoteAverage = styled.Text`
-  color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
-`;
-
-export const Overview = styled.Text`
-  color: ${theme.colors.secondary};
-  line-height: ${theme.fontSize.md};
-`;
-
-export const Actions = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-
-export const Item = styled.View`
-  flex: 1;
-  border: 1px solid #ccc;
-  margin: 2px 0;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
-  height: 200px;
-  background-color: ${props => (props.transparent ? "red" : "blue")};
-  width: 80%;
-  padding: 10px;
+  background: ${theme.colors.primary};
+  margin-top: 5px;
+  flex: 1 0;
 `;

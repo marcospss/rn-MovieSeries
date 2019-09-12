@@ -1,4 +1,4 @@
-import Reactotron, { trackGlobalErrors } from 'reactotron-react-native'
+import Reactotron from 'reactotron-react-native';
 
 const tron = Reactotron
   .configure({

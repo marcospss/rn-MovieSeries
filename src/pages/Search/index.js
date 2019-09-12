@@ -1,61 +1,83 @@
-import React, { Component } from 'react';
-import { ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Reactotron from 'reactotron-react-native';
 
-import NavigationHelper from '~/helpers/Navigation';
+import { getMultiSearch } from '~/services/Search';
 
-import { 
-  Button,
-  Label
-} from '~/styles';
+import Loading from '~/components/UI/loading';
+import ListSearch from '~/components/UI/listSearch';
 
 import { 
   Container,
-  Content,
-  Poster,
-  Details,
-  Title,
-  Category,
-  VoteAverage,
-  Actions,
+  SearchWrapper,
+  InputText
 } from './styles';
 
-class SearchScreen extends Component {
-  static navigationOptions = {
-    title: 'Search',
+Icon.loadFont();
+const OS = (Platform.OS === 'ios') ? 'ios' : 'md';
+
+export default SearchScreen = () => {
+  const [query, setQuery] = useState('');
+  const [medias, setMedias] = useState({});
+  const [loading, setLoading] = useState(false)
+
+  async function loadMultiSearch() {
+    try {
+      setLoading(true);
+      const response = await getMultiSearch(query);
+      Reactotron.log('loadMultiSearch', response.data);
+      setMedias(response.data);
+      setTimeout(() => {
+        setQuery('');
+        setLoading(false);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
   };
-    render() {
-      return (
+  
+  handleNameChange = (value) => {
+    setQuery(value);
+  }
+  
+  useEffect(() => {
+    if (query.length >= 2) {
+      loadMultiSearch();
+    }
+  }, [query]);
+
+  return (
+    <>
+      <Loading visible={loading} />
       <Container>
-        <ScrollView>
-          <Content>
-          <TouchableOpacity onPress={() => NavigationHelper.navigate('MoviesDetails')}>
-            <Poster source={{uri: 'https://image.tmdb.org/t/p/w92/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'}} />
-          </TouchableOpacity>
-            <Details>
-              <Title>Toy Story 4</Title>
-              <Category>Adventure | Animation | Comedy | Family</Category>
-              <Category>August 6th 2019, 2h 30m</Category>
-              <VoteAverage>Rating: 7.2 </VoteAverage>
-              <Actions>
-                <Button onPress={() => NavigationHelper.navigate('MoviesDetails')}>
-                  <Label>
-                    Read more
-                  </Label>
-                  <Icon
-                    style={{marginLeft: 20}}
-                    name="md-arrow-forward"
-                    size={26}
-                    color="#fff"
-                  />
-                </Button>
-              </Actions>
-            </Details>
-          </Content>
-        </ScrollView>
+        <SearchWrapper>
+          <Icon
+            style={{marginRight: 10, marginLeft: 10}}
+            name={`${OS}-search`}
+            size={30}
+            color="#000"
+          />
+          <InputText
+            placeholder="Find Movies and TV shows"
+            autoCorrect={false}
+            value={query}
+            onBlur={Keyboard.dismiss}
+            onChangeText={handleNameChange}
+          />
+        </SearchWrapper>
+        {
+          !loading
+          && medias 
+          && medias.results 
+          &&
+          <ListSearch
+            data={medias.results}
+          />
+        }
       </Container>
-      );
-    }  
+    </>
+    );
 }
 
-export default SearchScreen;
+ SearchScreen;
