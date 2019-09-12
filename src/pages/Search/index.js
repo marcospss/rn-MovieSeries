@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Reactotron from 'reactotron-react-native';
 
 import { getMultiSearch } from '~/services/Search';
 
@@ -23,15 +22,15 @@ export default SearchScreen = () => {
   const [loading, setLoading] = useState(false)
 
   async function loadMultiSearch() {
+    if (query === '') { return; }
     try {
       setLoading(true);
       const response = await getMultiSearch(query);
-      Reactotron.log('loadMultiSearch', response.data);
       setMedias(response.data);
       setTimeout(() => {
         setQuery('');
         setLoading(false);
-      }, 2000);
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
