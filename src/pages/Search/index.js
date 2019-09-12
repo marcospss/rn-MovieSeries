@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Reactotron from 'reactotron-react-native';
@@ -37,15 +37,9 @@ export default SearchScreen = () => {
     }
   };
   
-  handleNameChange = (value) => {
+  handleSetSearch = (value) => {
     setQuery(value);
   }
-  
-  useEffect(() => {
-    if (query.length >= 2) {
-      loadMultiSearch();
-    }
-  }, [query]);
 
   return (
     <>
@@ -62,8 +56,10 @@ export default SearchScreen = () => {
             placeholder="Find Movies and TV shows"
             autoCorrect={false}
             value={query}
+            returnKeyType="send"
+            onSubmitEditing={() => loadMultiSearch()}
             onBlur={Keyboard.dismiss}
-            onChangeText={handleNameChange}
+            onChangeText={handleSetSearch}
           />
         </SearchWrapper>
         {

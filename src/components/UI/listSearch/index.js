@@ -8,7 +8,6 @@ import { backdropImage } from '~/helpers/Image';
 
 import { 
     Container,
-    Section,
     Item,
     Header,
     Info,
@@ -52,7 +51,7 @@ export default ListSearch = ({ title, data }) => {
                                     size={24}
                                     color="#000"
                                 />
-                                <Label>{ item.vote_average.toFixed(1) }</Label>
+                                <Label>{ item.vote_average }</Label>
                                 </VoteAverage>
                                 <Info>
                                     <Title>{ checkTitle(item) }</Title>
