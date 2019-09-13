@@ -153,11 +153,9 @@ const FavoritesStack = createStackNavigator(
   {
     Favorites: {
       screen: Favorites,
-      navigationOptions: {
-        header: null,
-      }
     }
-  }
+  },
+  detailsNavigationOptions
 );
 
 const MainTabs = createBottomTabNavigator(
@@ -219,7 +217,7 @@ const MainDrawer = createDrawerNavigator(
     Discover: {
       screen: DiscoverStack,
       navigationOptions: {
-        drawerIcon: (<Icon name={`${OS}-search`} size={28} color="#000" />)
+        drawerIcon: (<Icon name={`${OS}-help-buoy`} size={28} color="#000" />)
       }
     },
     Favorites: {

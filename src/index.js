@@ -6,6 +6,7 @@ import { StatusBar, YellowBox, SafeAreaView } from 'react-native';
 
 import Navigation from './navigation';
 import NavigationHelper from '~/helpers/Navigation';
+import { ConfigContext, appData } from '~/config/appContext';
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
@@ -16,13 +17,15 @@ YellowBox.ignoreWarnings([
 
 export default App = () => {
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <StatusBar backgroundColor="#000" barStyle="light-content" />
-            <Navigation 
-                ref={navigatorRef => {
-                    NavigationHelper.setTopLevelNavigator(navigatorRef);
-                }}
-            />
-        </SafeAreaView>
+        <ConfigContext.Provider value={appData} >
+            <SafeAreaView style={{flex: 1}}>
+                <StatusBar backgroundColor="#000" barStyle="light-content" />
+                <Navigation 
+                    ref={navigatorRef => {
+                        NavigationHelper.setTopLevelNavigator(navigatorRef);
+                    }}
+                />
+            </SafeAreaView>
+        </ConfigContext.Provider>
     )
 };

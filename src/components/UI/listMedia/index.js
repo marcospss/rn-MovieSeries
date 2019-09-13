@@ -6,7 +6,7 @@ import { posterImage } from '~/helpers/Image';
 
 import { Container, Section, Poster, Title } from './styles';
 
-const checkTitle = (item) => (item.title) ? item.title : item.name;
+const setTitle = (item) => (item.title) ? item.title : item.name;
 
 export default ListMedia = ({ title, data, routeName, mediaType }) => {
     return (
@@ -21,14 +21,14 @@ export default ListMedia = ({ title, data, routeName, mediaType }) => {
                             <TouchableOpacity onPress={() => NavigationHelper.navigate(routeName, {
                                     mediaType,
                                     mediaId: item.id,
-                                    title: checkTitle(item),
+                                    title: setTitle(item),
                                 })}
                             >
                                 <Poster 
                                     source={{uri: posterImage(item.poster_path)}}
                                     resizeMode="contain"
                                 />
-                                <Title>{ checkTitle(item) }</Title>
+                                <Title>{ setTitle(item) }</Title>
                             </TouchableOpacity>
                         )}
                     />

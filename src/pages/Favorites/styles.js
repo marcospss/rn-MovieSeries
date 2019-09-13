@@ -2,70 +2,82 @@ import styled from 'styled-components/native';
 
 import theme from '~/styles/theme';
 
-export const Container = styled.SafeAreaView`
-  flex: 1;
+export const Container = styled.View`
+  padding: 10px;
   background-color: ${theme.colors.secondary};
 `;
 
-export const Content = styled.View`
+export const Section = styled.Text`
+  color: ${theme.colors.primary};
+  font-size: 24;
+  font-weight: bold;
+  margin-bottom: 20px;
+`;
+
+export const Item = styled.View`
+  margin-bottom: 20px;
+`;
+
+export const Header = styled.View`
+  flex: 1 0;
   flex-direction: row;
-  border-radius: 6px;
-  margin: 10px 0px;
+  width: 100%;
 `;
 
 export const Poster = styled.Image`
-  width: 92px;
-  height: 138px;
-  border-radius: 6px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  width: 185px;
+  height: 104px;
+  border-radius: 3;
 `;
 
-export const Details = styled.View`
-  flex: 1;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 6px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+export const VoteAverage = styled.View`
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3;
+  top: 0px;
+  left: 124px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 8px;
+  line-height: ${theme.fontSize.sm};
+  z-index: 10;
+`;
+
+export const Label = styled.Text`
+  color: ${theme.colors.secondary};
+  padding-left: 6px;
+  font-weight: bold;
+`;
+
+export const Info = styled.View`
+  flex: 1 0;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 14px;
 `;
 
 export const Title = styled.Text`
-  color: ${theme.colors.secondary};
   font-size: ${theme.fontSize.md};
+  color: ${theme.colors.primary};
+  font-weight: bold;
+`;
+
+export const Release = styled.Text`
+  font-size: ${theme.fontSize.sm};
+  color: ${theme.colors.primary};
   font-weight: bold;
   margin-bottom: 5px;
-  text-shadow: 0px 3px 9px rgba(0,0,0,0.3);
-  text-transform: uppercase;
 `;
 
-export const Category = styled.Text`
-  color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
-`;
-
-export const VoteAverage = styled.Text`
-  color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
+export const Content = styled.View`
+  flex: 1 0;
+  flex-direction: column;
 `;
 
 export const Overview = styled.Text`
-  color: ${theme.colors.secondary};
-  line-height: ${theme.fontSize.md};
-`;
-
-export const Actions = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-export const Button = styled.Button`
   color: ${theme.colors.primary};
-  border: none;
-  border-radius: 16px;
-  background-color: ${theme.colors.secondary};
+  line-height: ${theme.fontSize.lg};
+  text-align: justify;
+  padding: 10px 0px;
 `;
