@@ -20,9 +20,8 @@ import {
     Overview
 } from './styles';
 
-const checkTitle = (item) => (item.title) ? item.title : item.name;
-
-const checkRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails';
+const setTitle = (item) => (item.title) ? item.title : item.name;
+const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails';
 
 Icon.loadFont();
 
@@ -33,10 +32,10 @@ export default ListSearch = ({ title, data }) => {
                     data={data}
                     keyExtractor={item => String(item.id)}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => NavigationHelper.navigate(checkRoute(item.media_type), {
+                        <TouchableOpacity onPress={() => NavigationHelper.navigate(setRoute(item.media_type), {
                                 mediaType: item.media_type,
                                 mediaId: item.id,
-                                title: checkTitle(item),
+                                title: setTitle(item),
                             })}
                         >
                             <Item>
@@ -54,7 +53,7 @@ export default ListSearch = ({ title, data }) => {
                                 <Label>{ item.vote_average }</Label>
                                 </VoteAverage>
                                 <Info>
-                                    <Title>{ checkTitle(item) }</Title>
+                                    <Title>{ setTitle(item) }</Title>
                                     <Release>{ DateHelper.longFormat(item.release_date)}</Release>
                                 </Info>
                             </Header>

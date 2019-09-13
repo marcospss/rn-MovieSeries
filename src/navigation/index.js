@@ -153,9 +153,27 @@ const FavoritesStack = createStackNavigator(
   {
     Favorites: {
       screen: Favorites,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: (
+          <Icon 
+            style={{ paddingLeft: 10 }}
+            onPress={() => navigation.navigate('Home')}
+            name={`${OS}-arrow-back`}
+            size={30}
+            color="#fff"
+          />
+        ),
+        title: 'Favorites List',
+        headerStyle: {
+          backgroundColor: '#000',
+        },
+        headerTintColor: '#efefef',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }),
     }
   },
-  detailsNavigationOptions
 );
 
 const MainTabs = createBottomTabNavigator(
