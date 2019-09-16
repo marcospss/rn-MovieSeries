@@ -8,15 +8,8 @@ export const Container = styled.View`
   background-color: ${theme.colors.secondary};
 `;
 
-export const Section = styled.Text`
-  color: ${theme.colors.primary};
-  font-size: 24;
-  font-weight: bold;
-  margin-bottom: 20px;
-`;
-
 export const Item = styled.View`
-  margin-bottom: 20px;
+  margin-top: 15px;
 `;
 
 export const Header = styled.View`
@@ -45,7 +38,7 @@ export const VoteAverage = styled.View`
   z-index: 10;
 `;
 
-export const Label = styled.Text`
+export const LabelVoteAverage = styled.Text`
   color: ${theme.colors.secondary};
   padding-left: 6px;
   font-weight: bold;
@@ -71,14 +64,31 @@ export const Release = styled.Text`
   margin-bottom: 5px;
 `;
 
-export const Content = styled.View`
+export const Actions = styled.View.attrs({
+  borderStyle: 'solid',
+  borderColor: `${theme.colors.gray}`,
+  borderBottomWidth: 1,
+})`
   flex: 1 0;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0px 20px 0px;
 `;
 
-export const Overview = styled.Text`
-  color: ${theme.colors.primary};
-  line-height: ${theme.fontSize.lg};
-  text-align: justify;
-  padding: 10px 0px;
+export const Button = styled.TouchableOpacity`
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 8px;
+  line-height: ${theme.fontSize.sm};
+  z-index: 10;
+`;
+
+export const LabelButton = styled.Text`
+  font-size: ${theme.fontSize.sm};
+  color: ${theme.colors.secondary};
+  font-weight: bold;
+  margin: 0px 10px;
 `;

@@ -25,7 +25,7 @@ const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails
 
 Icon.loadFont();
 
-export default ListSearch = ({ title, data }) => {
+export default ListSearch = ({ data }) => {
     return (
         <Container>
                 <FlatList

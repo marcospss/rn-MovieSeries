@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { ConfigContext } from '~/config/appContext';
@@ -15,14 +15,17 @@ import {
   Info,
   Poster,
   VoteAverage,
-  Label,
+  LabelVoteAverage,
   Title,
   Release,
-  Content,
+  Actions,
+  Button,
+  LabelButton,
 } from './styles';
 
 Icon.loadFont();
 
+const OS = (Platform.OS === 'ios') ? 'ios' : 'md';
 const setTitle = (item) => (item.title) ? item.title : item.name;
 const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails';
 
@@ -47,12 +50,12 @@ export default FavoritesScreen = () => {
                           resizeMode="contain"
                       />
                       <VoteAverage>
-                      <Icon
-                          name="md-star"
+                        <Icon
+                          name={`${OS}-star`}
                           size={24}
                           color="#000"
-                      />
-                      <Label>{ item.vote_average.toFixed(1) }</Label>
+                        />
+                        <LabelVoteAverage>{ item.vote_average.toFixed(1) }</LabelVoteAverage>
                       </VoteAverage>
                       <Info>
                           <Title>{ setTitle(item) }</Title>
@@ -60,10 +63,29 @@ export default FavoritesScreen = () => {
                       </Info>
                   </Header>
                 </TouchableOpacity>
-                <Content>
-                  <Release>View Details</Release>
-                  <Release>Remove</Release>
-                </Content>
+                <Actions>
+                  <Button onPress={() => NavigationHelper.navigate(setRoute('movie'), {
+                      mediaType: 'movie',
+                      mediaId: item.id,
+                      title: setTitle(item),
+                    })}
+                  >
+                    <Icon
+                      name={`${OS}-eye`}
+                      size={24}
+                      color="#000"
+                    />
+                    <LabelButton>View Details</LabelButton>
+                  </Button>
+                  <Button>
+                    <Icon
+                      name={`${OS}-trash`}
+                      size={24}
+                      color="#000"
+                    />
+                    <LabelButton>Remove</LabelButton>
+                  </Button>
+                </Actions>
             </Item>
         )}
     />
