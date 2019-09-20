@@ -7,50 +7,42 @@ export const Container = styled.SafeAreaView`
   background-color: ${theme.colors.secondary};
 `;
 
-export const Content = styled.View`
+export const Filters = styled.View`
   flex-direction: row;
-  margin: 10px 0px;
-  background-color: #ffffff7e;
+  align-content: flex-end;
 `;
 
-export const Poster = styled.View`
-  flex-direction: column;
-  padding: 20px;
-`;
-
-export const Image = styled.Image`
-  width: 92px;
-  height: 138px;
-`;
-
-export const Details = styled.View`
+export const FilterGroup = styled.View`
   flex: 1;
-  padding: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: flex-end;
+  margin: 0px 0px 10px 10px;
+  padding: 5px;
 `;
 
-export const Title = styled.Text`
-  color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.md};
+export const LabelFilter = styled.Text`
+  font-size: ${theme.fontSize.sm};
+  color: ${theme.colors.primary};
+  margin-bottom: 5px;
   font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 5px;
+  padding: 5px 0px;
 `;
 
-export const Category = styled.Text`
+export const Picker = styled.Picker`
+  background: rgba(255, 255, 255, 0.7);
   color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
 `;
 
-export const VoteAverage = styled.Text`
-  color: ${theme.colors.secondary};
-  font-size: ${theme.fontSize.sm};
-  line-height: ${theme.fontSize.md};
-  margin-bottom: 5px;
-`;
-
-export const Overview = styled.Text`
-  color: ${theme.colors.secondary};
-  line-height: ${theme.fontSize.md};
+export const Button = styled.TouchableOpacity`
+  align-self: center;
+  margin-top: 24px;
+  width: 100px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; 
+  padding: 5px 10px;
 `;

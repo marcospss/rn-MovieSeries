@@ -75,7 +75,7 @@ const DetailsMovie = ({ navigation }) => {
           source={{uri: backdropImage(details.backdrop_path)}}
           resizeMode="contain"
         >
-          <Like media={details} />
+          <Like mediaData={details} mediaType="movie" />
           <VoteAverage>
             <Icon
               name="md-star"

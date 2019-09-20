@@ -38,8 +38,8 @@ export default FavoritesScreen = () => {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
             <Item>
-                <TouchableOpacity onPress={() => NavigationHelper.navigate(setRoute('movie'), {
-                    mediaType: 'movie',
+                <TouchableOpacity onPress={() => NavigationHelper.navigate(setRoute(item.mediaType), {
+                    mediaType: item.mediaType,
                     mediaId: item.id,
                     title: setTitle(item),
                   })}
@@ -64,8 +64,8 @@ export default FavoritesScreen = () => {
                   </Header>
                 </TouchableOpacity>
                 <Actions>
-                  <Button onPress={() => NavigationHelper.navigate(setRoute('movie'), {
-                      mediaType: 'movie',
+                  <Button onPress={() => NavigationHelper.navigate(setRoute(item.mediaType), {
+                      mediaType: item.mediaType,
                       mediaId: item.id,
                       title: setTitle(item),
                     })}
