@@ -43,7 +43,7 @@ const defaultNavigation = {
     ),
     headerRight: (
       <Icon 
-        style={{ paddingLeft: 10 }}
+        style={{ paddingRight: 10 }}
         onPress={() => navigation.navigate('Favorites')}
         name={`${OS}-heart`}
         size={28}
