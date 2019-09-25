@@ -3,7 +3,7 @@ import { FlatList, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { ConfigContext } from '~/config/appContext';
-
+import Reactotron from 'reactotron-react-native';
 import { backdropImage } from '~/helpers/Image';
 import NavigationHelper from '~/helpers/Navigation';
 import DateHelper from '~/helpers/Date';
@@ -31,6 +31,7 @@ const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails
 
 export default FavoritesScreen = () => {
   const context = useContext(ConfigContext);
+  Reactotron.log('context -> ', context.favorites);
   return (
     <Container>
       <FlatList 
@@ -55,7 +56,7 @@ export default FavoritesScreen = () => {
                           size={24}
                           color="#000"
                         />
-                        <LabelVoteAverage>{ item.vote_average.toFixed(1) }</LabelVoteAverage>
+                        <LabelVoteAverage>{ item.vote_average }</LabelVoteAverage>
                       </VoteAverage>
                       <Info>
                           <Title>{ setTitle(item) }</Title>

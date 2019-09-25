@@ -5,18 +5,19 @@ import Reactotron from 'reactotron-react-native';
 export default {
   async getData() {
     try {
-      const collection = await AsyncStorage.getItem(SETTINGS.storeName);
-      if (collection === null) { return []; }
-      return JSON.parse(collection);
+      const response = await AsyncStorage.getItem(SETTINGS.storeName);
+      return await JSON.parse(response) || [];
     } catch (error) {
       Reactotron.log('getData -> error -> ', error);
     }
   },
 
   async setValue(data) {
+    const collection = await this.getData();
+    const mergeValues = Object.assign(collection, data);
+    Reactotron.log('mergeValues -> ', mergeValues);
     try {
-      // const collection = await this.getData();
-      AsyncStorage.setItem(SETTINGS.storeName, JSON.stringify([data]));
+      AsyncStorage.setItem(SETTINGS.storeName, JSON.stringify(data));
     } catch (error) {
       Reactotron.log('setValue -> error -> ', error);
     }
