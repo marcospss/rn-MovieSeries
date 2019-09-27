@@ -3,7 +3,6 @@ import { FlatList, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { ConfigContext } from '~/config/appContext';
-import Reactotron from 'reactotron-react-native';
 import { backdropImage } from '~/helpers/Image';
 import NavigationHelper from '~/helpers/Navigation';
 import DateHelper from '~/helpers/Date';
@@ -18,6 +17,7 @@ import {
   LabelVoteAverage,
   Title,
   Release,
+  Overview,
   Actions,
   Button,
   LabelButton,
@@ -26,12 +26,10 @@ import {
 Icon.loadFont();
 
 const OS = (Platform.OS === 'ios') ? 'ios' : 'md';
-const setTitle = (item) => (item.title) ? item.title : item.name;
 const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails';
 
 export default FavoritesScreen = () => {
   const context = useContext(ConfigContext);
-  Reactotron.log('context -> ', context.favorites);
   return (
     <Container>
       <FlatList 
@@ -42,12 +40,12 @@ export default FavoritesScreen = () => {
                 <TouchableOpacity onPress={() => NavigationHelper.navigate(setRoute(item.mediaType), {
                     mediaType: item.mediaType,
                     mediaId: item.id,
-                    title: setTitle(item),
+                    title: item.title,
                   })}
                 >
                   <Header>
                       <Poster 
-                          source={{uri: backdropImage(item.backdrop_path)}}
+                          source={{uri: backdropImage(item.backdropPath)}}
                           resizeMode="contain"
                       />
                       <VoteAverage>
@@ -56,19 +54,20 @@ export default FavoritesScreen = () => {
                           size={24}
                           color="#000"
                         />
-                        <LabelVoteAverage>{ item.vote_average }</LabelVoteAverage>
+                        <LabelVoteAverage>{ item.voteAverage }</LabelVoteAverage>
                       </VoteAverage>
                       <Info>
-                          <Title>{ setTitle(item) }</Title>
-                          <Release>Release Date: { DateHelper.longFormat(item.release_date)}</Release>
+                          <Title>{ item.title }</Title>
+                          <Release>{ DateHelper.longFormat(item.date)}</Release>
                       </Info>
                   </Header>
                 </TouchableOpacity>
+                <Overview>{ item.overview }</Overview>
                 <Actions>
                   <Button onPress={() => NavigationHelper.navigate(setRoute(item.mediaType), {
                       mediaType: item.mediaType,
                       mediaId: item.id,
-                      title: setTitle(item),
+                      title: item.title,
                     })}
                   >
                     <Icon

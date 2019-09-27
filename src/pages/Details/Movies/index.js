@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getDetails, getRecommendations } from '~/services/Common';
 import { backdropImage, posterImage } from '~/helpers/Image';
+import { ConfigContext } from '~/config/appContext';
 
 import { 
   Container, 
@@ -60,6 +61,8 @@ export default DetailsMovie = ({ navigation }) => {
     }
   };
 
+  const context = useContext(ConfigContext);
+  console.tron.log('DetailsMovie -> Context ->', context);
 
   useEffect(() => {
     loadDetails();

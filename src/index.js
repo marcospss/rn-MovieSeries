@@ -6,8 +6,8 @@ import { StatusBar, YellowBox, SafeAreaView } from 'react-native';
 
 import Navigation from './navigation';
 import NavigationHelper from '~/helpers/Navigation';
-import StorageHelper from '~/helpers/Storage';
 import { ConfigContext } from '~/config/appContext';
+import getRealm from '~/services/realm';
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
@@ -18,13 +18,12 @@ YellowBox.ignoreWarnings([
 
 export default App = () => {
     const [favorites, setFavorites] = useState([]);
+
     async function loadFavorites() {
-        try {
-            const response = await StorageHelper.getData();
-            setFavorites([response]);
-        } catch (error) {
-            console.error(error);
-        }
+        const realm = await getRealm();
+        const data = realm.objects('Favorites').sorted('title', true);
+        console.tron.log('loadFavorites -> ', data);
+        setFavorites(data);
     };
 
     useEffect(() => {

@@ -10,6 +10,7 @@ export const Container = styled.View`
 
 export const Item = styled.View`
   margin-top: 15px;
+  padding-top: 20px;
 `;
 
 export const Header = styled.View`
@@ -26,13 +27,14 @@ export const Poster = styled.Image`
 
 export const VoteAverage = styled.View`
   position: absolute;
+  width: 60px;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 3;
   top: 0px;
   left: 124px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 2px 8px;
   line-height: ${theme.fontSize.sm};
   z-index: 10;
@@ -64,6 +66,13 @@ export const Release = styled.Text`
   margin-bottom: 5px;
 `;
 
+export const Overview = styled.Text`
+  color: ${theme.colors.primary};
+  line-height: ${theme.fontSize.lg};
+  text-align: justify;
+  padding: 10px 0px;
+`;
+
 export const Actions = styled.View.attrs({
   borderStyle: 'solid',
   borderColor: `${theme.colors.gray}`,
@@ -72,7 +81,7 @@ export const Actions = styled.View.attrs({
   flex: 1 0;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px 0px 20px 0px;
+  padding-bottom: 30px;
 `;
 
 export const Button = styled.TouchableOpacity`
