@@ -39,7 +39,6 @@ export default DetailsMovie = ({ navigation }) => {
 
   async function loadDetails() {
     try {
-      setLoading(true);
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
@@ -49,10 +48,9 @@ export default DetailsMovie = ({ navigation }) => {
 
   async function loadRecommendations() {
     try {
-      setLoading(true);
       const response = await getRecommendations(options);
       setRecommendations(response.data.results);
-      setLoading(false);
+      setLoading(true);
     } catch (error) {
       console.tron.log(error);
     }
@@ -67,7 +65,7 @@ export default DetailsMovie = ({ navigation }) => {
   <Container>
     <Loading visible={!isLoading} />
     {
-      !isLoading
+      isLoading
       &&
       <ScrollView>
         <Backdrop 
