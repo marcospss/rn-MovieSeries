@@ -15,3 +15,5 @@ export const Container = styled.View`
   line-height: ${theme.fontSize.sm};
   z-index: 10;
 `;
+
+export const Button = styled.TouchableOpacity``;

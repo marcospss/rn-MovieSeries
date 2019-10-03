@@ -31,7 +31,7 @@ const DetailsSeries = ({ navigation }) => {
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
   const [recommendations, setRecommendations] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const options = {
     mediaType: 'tv',
     mediaId
@@ -39,7 +39,6 @@ const DetailsSeries = ({ navigation }) => {
 
   async function loadDetails() {
     try {
-      setLoading(true);
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
@@ -49,12 +48,9 @@ const DetailsSeries = ({ navigation }) => {
 
   async function loadRecommendations() {
     try {
-      setLoading(true);
       const response = await getRecommendations(options);
       setRecommendations(response.data.results);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+      setLoading(true);
     } catch (error) {
       console.error(error);
     }
@@ -68,9 +64,9 @@ const DetailsSeries = ({ navigation }) => {
 
   return (
   <Container>
-    <Loading visible={loading} />
+    <Loading visible={!isLoading} />
     {
-      !loading
+      isLoading
       &&
       <ScrollView>
         <Backdrop 

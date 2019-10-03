@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar, YellowBox, SafeAreaView } from 'react-native';
 
 import Navigation from './navigation';
-import NavigationHelper from '~/helpers/Navigation';
-import { ConfigContext } from '~/config/appContext';
-import getRealm from '~/services/realm';
+import NavigationHelper from './helpers/Navigation';
+import { ConfigContext } from './config/appContext';
+import getRealm from './services/Realm';
 
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',

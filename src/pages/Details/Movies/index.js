@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getDetails, getRecommendations } from '~/services/Common';
 import { backdropImage, posterImage } from '~/helpers/Image';
-import { ConfigContext } from '~/config/appContext';
 
 import { 
   Container, 
@@ -32,7 +31,7 @@ export default DetailsMovie = ({ navigation }) => {
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
   const [recommendations, setRecommendations] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const options = {
     mediaType: 'movie',
     mediaId
@@ -44,7 +43,7 @@ export default DetailsMovie = ({ navigation }) => {
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
-      console.error(error);
+      console.tron.log(error);
     }
   };
 
@@ -53,16 +52,11 @@ export default DetailsMovie = ({ navigation }) => {
       setLoading(true);
       const response = await getRecommendations(options);
       setRecommendations(response.data.results);
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+      setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.tron.log(error);
     }
   };
-
-  const context = useContext(ConfigContext);
-  console.tron.log('DetailsMovie -> Context ->', context);
 
   useEffect(() => {
     loadDetails();
@@ -71,9 +65,9 @@ export default DetailsMovie = ({ navigation }) => {
 
   return (
   <Container>
-    <Loading visible={loading} />
+    <Loading visible={!isLoading} />
     {
-      !loading
+      !isLoading
       &&
       <ScrollView>
         <Backdrop 
