@@ -22,12 +22,14 @@ import {
 import ListMedia  from '~/components/UI/listMedia';
 import Loading from '~/components/UI/loading';
 import Like from '~/components/UI/like';
+import AlertError from '~/components/UI/alertError';
 
 Icon.loadFont();
 
 const genres = (details) => details && details.genres && details.genres.map((genre) => genre.name).join(' | ');
 
 export default DetailsMovie = ({ navigation }) => {
+  const [error, setError] = useState(false);
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
   const [recommendations, setRecommendations] = useState([]);
@@ -42,7 +44,7 @@ export default DetailsMovie = ({ navigation }) => {
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
-      console.tron.log(error);
+      setError(true);
     }
   };
 
@@ -52,7 +54,7 @@ export default DetailsMovie = ({ navigation }) => {
       setRecommendations(response.data.results);
       setLoading(true);
     } catch (error) {
-      console.tron.log(error);
+      setError(true);
     }
   };
 
@@ -64,8 +66,11 @@ export default DetailsMovie = ({ navigation }) => {
   return (
   <Container>
     <Loading visible={!isLoading} />
+    { error && <AlertError /> }
     {
       isLoading
+      &&
+      !error
       &&
       <ScrollView>
         <Backdrop 

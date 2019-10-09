@@ -9,8 +9,10 @@ import { Container } from '~/styles';
 
 import Carousel  from '~/components/UI/carousel';
 import ListMedia  from '~/components/UI/listMedia';
+import AlertError from '~/components/UI/alertError';
 
 export default MoviesScreen = ({ filterProperties }) => {
+  const [error, setError] = useState(false);
   const [endListCarousel, setEndListCarousel] = useState(false);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [popular, setPopular] = useState([]);
@@ -22,7 +24,7 @@ export default MoviesScreen = ({ filterProperties }) => {
       const response = await getNowPlaying();
       setNowPlaying(response.data.results);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -33,7 +35,7 @@ export default MoviesScreen = ({ filterProperties }) => {
       const response = await getPopular(filterProperties.mediaType);
       setPopular(response.data.results);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -42,7 +44,7 @@ export default MoviesScreen = ({ filterProperties }) => {
       const response = await getTopRated(filterProperties.mediaType);
       setTopRated(response.data.results);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -51,7 +53,7 @@ export default MoviesScreen = ({ filterProperties }) => {
       const response = await getUpcoming();
       setUpcoming(response.data.results);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -64,34 +66,40 @@ export default MoviesScreen = ({ filterProperties }) => {
 
   return (
     <Container>
-      <Carousel 
-        title="Now Playing Movies" 
-        data={nowPlaying && nowPlaying.slice(0,8)}
-        endListCarousel={endListCarousel}
-        showIconEndList={showIconEndList}
-        mediaType={filterProperties.mediaType}
-        routeName="MoviesDetails"
-      />
-      <ScrollView>
-        <ListMedia 
-          title="Popular Movies" 
-          data={popular}
-          mediaType={filterProperties.mediaType}
-          routeName="MoviesDetails"
-        />
-        <ListMedia 
-          title="Top Rated Movies"
-          data={topRated} 
-          mediaType={filterProperties.mediaType}
-          routeName="MoviesDetails"
-        />
-        <ListMedia 
-          title="Upcoming Movies" 
-          data={upcoming}
-          mediaType={filterProperties.mediaType}
-          routeName="MoviesDetails"
-        />
-      </ScrollView>
+      { error && <AlertError /> }
+      {
+        !error &&
+        <>
+          <Carousel 
+            title="Now Playing Movies" 
+            data={nowPlaying && nowPlaying.slice(0,8)}
+            endListCarousel={endListCarousel}
+            showIconEndList={showIconEndList}
+            mediaType={filterProperties.mediaType}
+            routeName="MoviesDetails"
+          />
+          <ScrollView>
+            <ListMedia 
+              title="Popular Movies" 
+              data={popular}
+              mediaType={filterProperties.mediaType}
+              routeName="MoviesDetails"
+            />
+            <ListMedia 
+              title="Top Rated Movies"
+              data={topRated} 
+              mediaType={filterProperties.mediaType}
+              routeName="MoviesDetails"
+            />
+            <ListMedia 
+              title="Upcoming Movies" 
+              data={upcoming}
+              mediaType={filterProperties.mediaType}
+              routeName="MoviesDetails"
+            />
+          </ScrollView>
+        </>
+      }
     </Container>
   )
 };

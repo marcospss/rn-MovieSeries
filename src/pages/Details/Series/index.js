@@ -24,10 +24,12 @@ import ListMedia  from '~/components/UI/listMedia';
 import CarouselSeasons  from '~/components/UI/carouselSeasons';
 import Loading from '~/components/UI/loading';
 import Like from '~/components/UI/like';
+import AlertError from '~/components/UI/alertError';
 
 Icon.loadFont();
 
 const DetailsSeries = ({ navigation }) => {
+  const [error, setError] = useState(false);
   const mediaId = navigation.getParam('mediaId');
   const [details, setDetails] = useState({});
   const [recommendations, setRecommendations] = useState([]);
@@ -42,7 +44,7 @@ const DetailsSeries = ({ navigation }) => {
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -52,7 +54,7 @@ const DetailsSeries = ({ navigation }) => {
       setRecommendations(response.data.results);
       setLoading(true);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -65,8 +67,11 @@ const DetailsSeries = ({ navigation }) => {
   return (
   <Container>
     <Loading visible={!isLoading} />
+    { error && <AlertError /> }
     {
       isLoading
+      &&
+      !error
       &&
       <ScrollView>
         <Backdrop 

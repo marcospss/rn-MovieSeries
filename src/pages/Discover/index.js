@@ -29,6 +29,8 @@ import {
   Overview
 } from './styles';
 
+import AlertError from '~/components/UI/alertError';
+
 const OS = (Platform.OS === 'ios') ? 'ios' : 'md';
 
 const getYears = () => {
@@ -46,6 +48,7 @@ const getYears = () => {
 Icon.loadFont();
 
 export default DiscoverScreen = () => {
+  const [error, setError] = useState(false);
   const [yearsCollection, setCollectionsYears] = useState([]);
   const [discoverCollection, setDiscoverCollection] = useState([]);
   const [year, setYear] = useState('');
@@ -65,7 +68,7 @@ export default DiscoverScreen = () => {
       setGenresCollection(response.data.genres);
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -85,7 +88,7 @@ export default DiscoverScreen = () => {
         setLoading(false);
       }, 1000);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
   
@@ -97,8 +100,11 @@ export default DiscoverScreen = () => {
   return (
     <Container>
     <Loading visible={loading} />
+    { error && <AlertError /> }
     {
       !loading
+      &&
+      !error
       &&
       <>
       <Filters>

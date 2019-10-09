@@ -4,19 +4,21 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getMultiSearch } from '~/services/Search';
 
-import Loading from '~/components/UI/loading';
-import ListSearch from '~/components/UI/listSearch';
-
 import { 
   Container,
   SearchWrapper,
   InputText
 } from './styles';
 
+import Loading from '~/components/UI/loading';
+import ListSearch from '~/components/UI/listSearch';
+import AlertError from '~/components/UI/alertError';
+
 Icon.loadFont();
 const OS = (Platform.OS === 'ios') ? 'ios' : 'md';
 
 export default SearchScreen = () => {
+  const [error, setError] = useState(false);
   const [query, setQuery] = useState('');
   const [medias, setMedias] = useState({});
   const [loading, setLoading] = useState(false)
@@ -32,7 +34,7 @@ export default SearchScreen = () => {
         setLoading(false);
       }, 1000);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
   
@@ -43,6 +45,7 @@ export default SearchScreen = () => {
   return (
     <>
       <Loading visible={loading} />
+      { error && <AlertError /> }
       <Container>
         <SearchWrapper>
           <Icon
@@ -65,10 +68,11 @@ export default SearchScreen = () => {
           !loading
           && medias 
           && medias.results 
-          &&
-          <ListSearch
-            data={medias.results}
-          />
+          && (
+            <ListSearch
+              data={medias.results}
+            />
+          )
         }
       </Container>
     </>

@@ -21,10 +21,12 @@ import {
 import DateHelper from '~/helpers/Date';
 import Loading from '~/components/UI/loading';
 import ListSeasons from '~/components/UI/listSeasons';
+import AlertError from '~/components/UI/alertError';
 
 Icon.loadFont();
 
 const DetailsSeason = ({ navigation }) => {
+  const [error, setError] = useState(false);
   const mediaTitle = navigation.getParam('mediaTitle');
   const mediaId = navigation.getParam('mediaId');
   const seasonNumber = navigation.getParam('seasonNumber');
@@ -42,7 +44,7 @@ const DetailsSeason = ({ navigation }) => {
       setDetails(response.data);
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
@@ -53,8 +55,11 @@ const DetailsSeason = ({ navigation }) => {
   return (
   <Container>
     <Loading visible={loading} />
+    { error && <AlertError /> }
     {
       !loading
+      &&
+      !error
       &&
       <ScrollView>
           <Header>
