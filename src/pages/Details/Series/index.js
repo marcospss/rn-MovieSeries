@@ -73,7 +73,7 @@ const DetailsSeries = ({ navigation }) => {
           source={{uri: backdropImage(details.backdrop_path)}}
           resizeMode="contain"
         >
-          <Like mediaData={details} mediaType="tv" />
+          <Like mediaData={{...details, mediaType: "tv"}} />
           <VoteAverage>
             <Icon
               name="md-star"

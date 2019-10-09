@@ -72,7 +72,7 @@ export default DetailsMovie = ({ navigation }) => {
           source={{uri: backdropImage(details.backdrop_path)}}
           resizeMode="contain"
         >
-          <Like mediaData={details} mediaType="movie" />
+          <Like mediaData={{...details, mediaType: "movie"}} />
           <VoteAverage>
             <Icon
               name="md-star"

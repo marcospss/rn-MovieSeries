@@ -22,7 +22,6 @@ export default App = () => {
     async function loadFavorites() {
         const realm = await getRealm();
         const data = realm.objects('Favorites').sorted('title', true);
-        console.tron.log('loadFavorites -> ', data);
         setFavorites(data);
     };
 

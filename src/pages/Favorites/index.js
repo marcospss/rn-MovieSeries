@@ -6,6 +6,7 @@ import { ConfigContext } from '~/config/appContext';
 import { backdropImage } from '~/helpers/Image';
 import NavigationHelper from '~/helpers/Navigation';
 import DateHelper from '~/helpers/Date';
+import getRealm from '~/services/Realm';
 
 import { 
   Container,
@@ -30,6 +31,15 @@ const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails
 
 export default FavoritesScreen = () => {
   const context = useContext(ConfigContext);
+
+  async function removeFavorite(id) {
+    const realm = await getRealm();
+    const favorite = realm.objects('Favorites').filtered(`id=${id}`);
+    realm.write(() => {
+        realm.delete(favorite);
+    });
+  }
+
   return (
     <Container>
       <FlatList 
@@ -77,7 +87,7 @@ export default FavoritesScreen = () => {
                     />
                     <LabelButton>View Details</LabelButton>
                   </Button>
-                  <Button>
+                  <Button onPress={() => removeFavorite(item.id)}>
                     <Icon
                       name={`${OS}-trash`}
                       size={24}

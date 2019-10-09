@@ -9,7 +9,6 @@ export default class FavoritesSchema {
         backdropPath: 'string',
         overview: 'string',
         voteAverage: 'double',
-        isFavorite: 'bool',
         mediaType: 'string',
       },
     };
