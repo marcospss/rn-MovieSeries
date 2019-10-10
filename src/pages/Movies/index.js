@@ -69,7 +69,7 @@ export default MoviesScreen = ({ filterProperties }) => {
       { error && <AlertError /> }
       {
         !error &&
-        <>
+        <ScrollView>
           <Carousel 
             title="Now Playing Movies" 
             data={nowPlaying && nowPlaying.slice(0,8)}
@@ -78,27 +78,25 @@ export default MoviesScreen = ({ filterProperties }) => {
             mediaType={filterProperties.mediaType}
             routeName="MoviesDetails"
           />
-          <ScrollView>
-            <ListMedia 
-              title="Popular Movies" 
-              data={popular}
-              mediaType={filterProperties.mediaType}
-              routeName="MoviesDetails"
-            />
-            <ListMedia 
-              title="Top Rated Movies"
-              data={topRated} 
-              mediaType={filterProperties.mediaType}
-              routeName="MoviesDetails"
-            />
-            <ListMedia 
-              title="Upcoming Movies" 
-              data={upcoming}
-              mediaType={filterProperties.mediaType}
-              routeName="MoviesDetails"
-            />
-          </ScrollView>
-        </>
+          <ListMedia 
+            title="Popular Movies" 
+            data={popular}
+            mediaType={filterProperties.mediaType}
+            routeName="MoviesDetails"
+          />
+          <ListMedia 
+            title="Top Rated Movies"
+            data={topRated} 
+            mediaType={filterProperties.mediaType}
+            routeName="MoviesDetails"
+          />
+          <ListMedia 
+            title="Upcoming Movies" 
+            data={upcoming}
+            mediaType={filterProperties.mediaType}
+            routeName="MoviesDetails"
+          />
+        </ScrollView>
       }
     </Container>
   )

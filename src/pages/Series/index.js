@@ -69,7 +69,7 @@ export default SeriesScreen = ({ filterProperties }) => {
       { error && <AlertError /> }
       {
         !error &&
-        <>
+        <ScrollView>
           <Carousel 
             title="Popular TV Shows" 
             data={popular && popular.slice(0,8)}
@@ -78,27 +78,25 @@ export default SeriesScreen = ({ filterProperties }) => {
             mediaType={filterProperties.mediaType}
             routeName="SeriesDetails"
           />
-          <ScrollView>
-            <ListMedia 
-              title="Top Rated TV Shows"
-              data={topRated} 
-              mediaType={filterProperties.mediaType}
-              routeName="SeriesDetails"
-            />
-            <ListMedia 
-              title="Currently Airing TV Shows" 
-              data={onTheAir}
-              mediaType={filterProperties.mediaType}
-              routeName="SeriesDetails"
-            />
-            <ListMedia 
-              title="TV Shows Airing Today" 
-              data={airingToday}
-              mediaType={filterProperties.mediaType}
-              routeName="SeriesDetails"
-            />
-          </ScrollView>
-        </>
+          <ListMedia 
+            title="Top Rated TV Shows"
+            data={topRated} 
+            mediaType={filterProperties.mediaType}
+            routeName="SeriesDetails"
+          />
+          <ListMedia 
+            title="Currently Airing TV Shows" 
+            data={onTheAir}
+            mediaType={filterProperties.mediaType}
+            routeName="SeriesDetails"
+          />
+          <ListMedia 
+            title="TV Shows Airing Today" 
+            data={airingToday}
+            mediaType={filterProperties.mediaType}
+            routeName="SeriesDetails"
+          />
+        </ScrollView>
       }
     </Container>
   )
