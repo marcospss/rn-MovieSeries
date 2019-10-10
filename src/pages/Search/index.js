@@ -34,6 +34,7 @@ export default SearchScreen = () => {
         setLoading(false);
       }, 1000);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };

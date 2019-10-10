@@ -44,6 +44,7 @@ const DetailsSeason = ({ navigation }) => {
       setDetails(response.data);
       setLoading(false);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };

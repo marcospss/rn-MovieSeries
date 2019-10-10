@@ -44,6 +44,7 @@ export default DetailsMovie = ({ navigation }) => {
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };
@@ -54,6 +55,7 @@ export default DetailsMovie = ({ navigation }) => {
       setRecommendations(response.data.results);
       setLoading(true);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };

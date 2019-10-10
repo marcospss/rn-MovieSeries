@@ -68,6 +68,7 @@ export default DiscoverScreen = () => {
       setGenresCollection(response.data.genres);
       setLoading(false);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };
@@ -84,10 +85,9 @@ export default DiscoverScreen = () => {
       setLoading(true);
       const response = await getDiscover(filterOptions);
       setDiscoverCollection(response.data.results);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      setLoading(false);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };

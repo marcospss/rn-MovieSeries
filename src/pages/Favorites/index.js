@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FlatList, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { ConfigContext } from '~/config/appContext';
 import { backdropImage } from '~/helpers/Image';
 import NavigationHelper from '~/helpers/Navigation';
 import DateHelper from '~/helpers/Date';
@@ -30,20 +29,31 @@ const OS = (Platform.OS === 'ios') ? 'ios' : 'md';
 const setRoute = (media) => media === 'movie' ? 'MoviesDetails' : 'SeriesDetails';
 
 export default FavoritesScreen = () => {
-  const context = useContext(ConfigContext);
+  const [favorites, setFavorites] = useState([]);
+
+    async function loadFavorites() {
+        const realm = await getRealm();
+        const data = realm.objects('Favorites').sorted('title', true);
+        setFavorites(data);
+    };
 
   async function removeFavorite(id) {
     const realm = await getRealm();
     const favorite = realm.objects('Favorites').filtered(`id=${id}`);
     realm.write(() => {
         realm.delete(favorite);
+        loadFavorites();
     });
   }
+
+  useEffect(() => {
+    loadFavorites();
+}, []);
 
   return (
     <Container>
       <FlatList 
-        data={context.favorites}
+        data={favorites}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
             <Item>

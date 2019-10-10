@@ -44,6 +44,7 @@ const DetailsSeries = ({ navigation }) => {
       const response = await getDetails(options);
       setDetails(response.data);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };
@@ -54,6 +55,7 @@ const DetailsSeries = ({ navigation }) => {
       setRecommendations(response.data.results);
       setLoading(true);
     } catch (error) {
+      setLoading(true);
       setError(true);
     }
   };
